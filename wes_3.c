@@ -18,36 +18,6 @@ typedef struct Element
 	
 } Element;
 
-void AddElement_notReference(Element elem, int add)
-{
-	if (NULL == elem.my_ptr)
-	{
-	 return;
-	}
-	
-	char* tmp = NULL;
-	
-	switch (elem.my_type)
-	{
-	case INT: 
-		*(int*)elem.my_ptr += add;
-		break;
-	case STRING: 
-		char str_add[8];
-		sprintf(str_add, "%d", add);
-		
-		tmp = (char*)elem.my_ptr;  /* will be free after copy */
-		
-		elem.my_ptr = malloc(8 + strlen(tmp)); /* for now more 8 bytes is enough */
-		strcpy((char*)elem.my_ptr, tmp);
-		strcat((char*)elem.my_ptr, str_add);
-		free(tmp);
-		break;
-	case FLOAT: 
-		*(float*)elem.my_ptr += (float)add;
-		break;
-	}
-}
 
 void AddElement(Element* pelem, int add)
 {
@@ -57,6 +27,7 @@ void AddElement(Element* pelem, int add)
 	}
 	
 	char* tmp = NULL;
+	char str_add[8];
 	
 	switch (pelem->my_type)
 	{
@@ -64,11 +35,9 @@ void AddElement(Element* pelem, int add)
 		*(int*)(pelem->my_ptr) += add;
 		break;
 	case STRING: 
-		char str_add[8];
 		sprintf(str_add, "%d", add);
-		
 		tmp = (char*)pelem->my_ptr;  /* will be free after copy */
-		
+
 		pelem->my_ptr = malloc(8 + strlen(tmp)); /* for now more 8 bytes is enough */
 		strcpy((char*)pelem->my_ptr, tmp);
 		strcat((char*)pelem->my_ptr, str_add);
