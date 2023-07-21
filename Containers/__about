@@ -1,0 +1,19 @@
+
+In the line 
+	buffsize = offsetof(cbuffer_t, arr) + (capacity + 1) * sizeof(char);
+
+the code calculates the required memory size for a circular buffer based on the capacity parameter.
+Let's break down the expression step by step:
+
+offsetof(cbuffer_t, arr): 
+	The offsetof macro calculates the offset of the member arr within the structure cbuffer_t. It determines the number of bytes from the beginning of the structure to the arr member.
+
+    (capacity + 1): The capacity parameter represents the number of elements you want the circular buffer to be able to hold. Adding 1 to capacity accounts for the extra element in the circular buffer. This is typically done to avoid ambiguity in differentiating between an empty buffer and a full buffer.
+
+    sizeof(char): The sizeof operator is used to determine the size in bytes of the char data type. In this case, it is used to get the size of each element in the circular buffer. Since char is 1 byte in size, sizeof(char) is equivalent to 1.
+
+By multiplying (capacity + 1) by sizeof(char), you get the total size in bytes required to store capacity + 1 elements in the circular buffer.
+
+Finally, by adding the offset of arr obtained from offsetof to the total size calculated in the previous step, you get the total buffsize required to hold the circular buffer, including any necessary padding and metadata.
+
+It's important to note that the buffsize calculation assumes that the arr member is a flexible array member. The declaration char arr[1]; is a common technique used to represent a dynamically-sized array within a structure. The actual size of the arr member will be determined dynamically during runtime based on the calculated buffsize.
