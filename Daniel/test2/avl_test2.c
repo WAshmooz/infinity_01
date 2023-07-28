@@ -6,7 +6,8 @@
 *******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
-#include "avl.h"
+#include "../include/avl.h"
+void AvlPrint(avl_t *tree);
 
 #define COUNT 5
 
@@ -64,51 +65,37 @@ void print2DUtil(avl_node_t *root, int space)
 /* Test function for the AVL tree */
 void test_avl_tree() 
 {
-	MyData data1 = {5};
-    MyData data2 = {3};
-    MyData data3 = {7};
-    MyData data4 = {2};
-    MyData data5 = {6};
-    MyData data6 = {4};
-    MyData data7 = {9};
-        
-    MyData remove_data = {3};
-    MyData find_data = {3};
-    MyData *found_data = NULL;    
+	int dataArr[] = { 5, 3 ,7 ,2 ,6 ,4 ,9, 13, 14 };
+	const size_t SIZE = sizeof(dataArr) / sizeof(int);
+	MyData remove_data = {3};
+	MyData find_data = {3};
+	MyData *found_data = NULL;    
+	size_t i = 0;
+	
+	avl_t *tree = AvlCreate(IsBefore);
+	if (tree == NULL) 
+	{
+		printf("Failed to create AVL tree.\n");
+		return;
+	}
+	
+	printf("Print order: ");
+	for (i = 0; i < SIZE; ++i) {
+		printf("%d, ", dataArr[i]);
+	}
+	printf("\n\n\n");
+	
+	/* Insert data into the tree */
+	for (i = 0; i < SIZE; ++i) {
+		AvlInsert(tree, &dataArr[i]);
+		/* print2DUtil(tree->root, 0); */
+		AvlPrint(tree);
+		/* printf("--------------------------\n"); */
+	}
+	
+	
+	return;
 
-    avl_t *tree = AvlCreate(IsBefore);
-    if (tree == NULL) 
-    {
-        printf("Failed to create AVL tree.\n");
-        return;
-    }
-    
-    printf("Print order: 5, 3, 7, 2, 6, 4, 9");	  
-            printf("\n\n\n");	      
-    /* Insert data into the tree */
-    AvlInsert(tree, &data1);
-    print2DUtil(tree->root, 0);
-        printf("\n\n\n");	    
-    AvlInsert(tree, &data2);
-    print2DUtil(tree->root, 0);
-            printf("\n\n\n");	    
-    AvlInsert(tree, &data3);
-    print2DUtil(tree->root, 0);
-            printf("\n\n\n");	    
-    AvlInsert(tree, &data4);
-    print2DUtil(tree->root, 0);
-            printf("\n\n\n");	    
-    AvlInsert(tree, &data5);
-    print2DUtil(tree->root, 0);
-            printf("\n\n\n");	    
-    AvlInsert(tree, &data6);
-    print2DUtil(tree->root, 0);
-            printf("\n\n\n");	    
-    AvlInsert(tree, &data7);
-        
-print2DUtil(tree->root, 0);
-        printf("\n\n\n");	    
-    
     /* Print the tree in-order */
     printf("In-order traversal:\n");
     AvlForEachInorder(tree, PrintMyData, NULL);
