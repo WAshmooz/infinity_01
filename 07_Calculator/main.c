@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+typedef long ssize_t;
+
 
 const char *GREEN = "\033[0;32m";
 const char *RED = "\033[1;31m";
@@ -23,6 +25,8 @@ typedef struct Operators_and_Numbers
 	EType e_type;
 	
 } Operators_and_Numbers;
+
+Operators_and_Numbers arr[64];
 
 /*
  *str is the pointer to the string,
@@ -58,7 +62,6 @@ static int getFromString(char* str)
 	double ret;
 	char ch;
 	char *ptr = str;
-	Operators_and_Numbers arr[32];
 	int i = 0;
 	int safeStop = 100;
 	
