@@ -19,6 +19,9 @@
 
 #define SUCCESS 0
 #define FAIL 	1
+
+
+
 /*****************************************************************************/
 
 struct hash
@@ -136,17 +139,19 @@ Notes               Undefined behaviour if hash is invalid pointer.
 					undefined behaviour if key is invalid pointer.
 *******************************************************************************/
 static ditr_t DListFindForHash(ditr_t from, ditr_t to, is_match_func_t match_func, 
-						void *key)
+						const void *key)
 {
 	hash_elem_t *get_data = NULL;
 	assert(NULL != from);
 	assert(NULL != to);
-	
+printf("---------------------------------------------\n");	
 	while (!DListIterIsEqual(from, to))
 	{
 		get_data = (hash_elem_t *)DListGetData(from);
 		
-		if ( match_func(get_data->key, key) )
+printf("get_data->key = %s, key = %s\n", (char *)get_data->key, (char *)key);
+printf("---------\n");	
+		if (match_func(get_data->key, key) )
 		{
 			return from;
 		}
@@ -160,20 +165,21 @@ static ditr_t DListFindForHash(ditr_t from, ditr_t to, is_match_func_t match_fun
 
 void HashRemove(hash_t *hash, const void *key)
 {
-	ditr_t itr_to_remove = NULL;
+	ditr_t itr_to_remove = {0};
 	dlist_t *list = NULL;
-	hash_elem_t *hash_elem;
-	hash_elem->key = key;
 	
+printf("key from user = %s\n",(char *)key); /*******************************/
+
 	assert(NULL != hash);	
 	assert(NULL != key);	
 
-	list = hash->table[hash->hash_func(key)];
+	list = hash->table[hash->hash_func(key)];	
 	itr_to_remove = DListFindForHash(DListIterBegin(list), DListIterEnd(list), 
-							hash->match_func, hash_elem);
+							hash->match_func, key);
 	
 	if ( NULL == itr_to_remove)
 	{
+		free((hash_elem_t *)DListGetData(itr_to_remove));
 		DListRemove(itr_to_remove);
 	}
 }
@@ -203,7 +209,7 @@ int HashInsert(hash_t *hash,const void *key, void *val)
 	hash_elem->key = key;
 	hash_elem->val = val;
 	
-	check_insert = DListPushFront(list, hash_elem);
+	check_insert = DListPushBack(list, hash_elem);
 	
 	if(DListIterIsEqual(DListIterEnd(list), check_insert))
 	{
