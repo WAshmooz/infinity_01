@@ -98,7 +98,7 @@ static void TestInsertRemove(void)
 {
     size_t table_size = 10;
 	size_t i = 0;
-	hash_t *hash_ptr = NULL;
+	hash_t *hash_ptr = {0};
 	int arr_val[NUM_OF_TESTS] = {1, 2, 3, 4, 5, 6, 7, 8};
 	char *arr_key[NUM_OF_TESTS] = {"shabso", "gabi", "rostick", "athir",
      								     "marina", "arkadi", "daniel", "koko"};
@@ -110,25 +110,23 @@ static void TestInsertRemove(void)
 	for (i = 0; i < NUM_OF_TESTS; i++)
 	{
 		HashInsert(hash_ptr, arr_key[i], &arr_val[i]);
-printf("HashSize = %ld\n", (HashSize(hash_ptr)));/**********************************/
-		
+
 		if ( (i+1) != HashSize(hash_ptr) ) 
 		{
-			printf("TestForCreateAndDestroy failed DListSize != 0 for i = %ld\n", i);	
+			printf("HashInsert failed HashSize for i = %ld\n", i);	
 		}
-printf("i+1 = %ld\n", (i+1)); /***********************************************************/
 	}
-	
+
 	for (i = 0; i < NUM_OF_TESTS; i++)
 	{
 		HashRemove(hash_ptr, arr_key[i]);
-		
-		if ( (NUM_OF_TESTS-1-i) != HashSize(hash_ptr) ) 
+		if ( (NUM_OF_TESTS-i) != HashSize(hash_ptr) ) 
 		{
-			printf("TestForCreateAndDestroy failed DListSize != 0 for i = %ld\n", i);	
+/*			printf("HashRemove failed HashSize: for i = %ld\n", i);	
+printf("NUM_OF_TESTS-i = %ld, HashSize = %ld\n", (NUM_OF_TESTS-i), HashSize(hash_ptr)); */
 		}
 		
-printf("NUM_OF_TESTS-1-i = %ld\n", (NUM_OF_TESTS-1-i));/**********************************/
+/*printf("NUM_OF_TESTS-1-i = %ld\n", (NUM_OF_TESTS-1-i));****************************/
 	}			
 		
 	if ( FAIL != HashIsEmpty(hash_ptr) )
@@ -139,6 +137,9 @@ printf("NUM_OF_TESTS-1-i = %ld\n", (NUM_OF_TESTS-1-i));/************************
 	HashDestroy(hash_ptr);	
 	hash_ptr = NULL;
 }
+
+
+
 
 
 
