@@ -25,7 +25,7 @@ struct heap
 /*******************************************************************************
 							Helper Functions 	
 *******************************************************************************/
-void SwapPtr(size_t *ptr1, size_t *ptr2) 
+void SwapPtr(size_t *ptr1, size_t *ptr2)
 {
     size_t temp = *ptr1;
     *ptr1 = *ptr2;
@@ -115,24 +115,25 @@ int HeapPush(heap_t *heap, void *data)
 	assert(NULL != heap);	
 	assert(NULL != data);
 	
-	if (VectorPushBack(heap->vector, data))
+	
+	if (VectorPushBack(heap->vector, &data))
 	{
 		return FAIL;
 	}
 	
 	while( TRUE == heap->is_before_func(child, parent) )
 	{
-			SwapPtr(child, parent);
-
-			idx_child = idx_parent;
-			idx_parent = GetParentIdx(idx_child);
-			child = VectorGetAccess(heap->vector, idx_child);
-			if(child == VectorGetAccess(heap->vector, 0))
-			{
-				break;
-			}
-			parent = VectorGetAccess(heap->vector, idx_parent);
-	}	
+		SwapPtr(child, parent);
+		
+		idx_child = idx_parent;
+		idx_parent = GetParentIdx(idx_child);
+		child = VectorGetAccess(heap->vector, idx_child);
+		if(child == VectorGetAccess(heap->vector, 0))
+		{
+			break;
+		}
+		parent = VectorGetAccess(heap->vector, idx_parent);
+	}
 	
 	return SUCCESS;
 }
@@ -194,13 +195,13 @@ int HeapRemove(heap_t *heap, is_match_func_t is_match, void *param);
 
 
 
-void PrintHeap(heap_t *heap)
+void PrintHeap(heap_t *heap, PrintElement printFunc)
 {
 	vector_t *vec = heap->vector;
 	int i = 0, j = 0, level = 0;
 	int curIdx = 0;
 	int nodes_on_level = 1;
-	int curNode;
+	void *curNode;
 	int safeStop = 100;
 	int treeSpaces1[] = { 
 		126, 0,
@@ -230,8 +231,9 @@ void PrintHeap(heap_t *heap)
 		
 		for (i = 0; i < nodes_on_level && curIdx < vectorSize; ++i, ++curIdx)
 		{
-			curNode = *(int*)VectorGetAccess(vec, curIdx);
-			printf("%02d", curNode);
+			curNode = VectorGetAccess(vec, curIdx);
+			printFunc(curNode);
+			
 			if (i % 2) {
 				printf("%*s", spacesInBetween, "");
 			}
@@ -243,6 +245,6 @@ void PrintHeap(heap_t *heap)
 		nodes_on_level *= 2;
 		printf("\n");
 	}
-	printf("\n\n--------------------------------------------------------------\n");
+	printf("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 

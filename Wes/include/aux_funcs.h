@@ -24,6 +24,8 @@ Return value:    	(lhs < rhs)
 ******************************************************************************/
 typedef int (*is_before_t) (const void *lhs, const void *rhs);
 
+typedef void (*PrintElement) (const void *element);
+
 #endif    /*__AUX_FUNCS_H__*/
 
 
