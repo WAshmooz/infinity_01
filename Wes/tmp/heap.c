@@ -5,8 +5,8 @@
 ****** Description: Data structure that maps keys to values.
 *******************************************************************************/
 #include <stdlib.h>/* size_t, malloc, free, srand, rand	*/
-#include "vector.h"
-#include "heap.h"
+#include "../include/vector.h"
+#include "../include/heap.h"
 #include <assert.h>
 
 #include <stdio.h>		/* printf */
@@ -32,6 +32,15 @@ void SwapPtr(size_t *ptr1, size_t *ptr2)
     *ptr2 = temp;
 }
 
+/* void SwapPtr(void **ptr1, void **ptr2)  */
+/* { */
+    /* void *temp = *ptr1; */
+    /* *ptr1 = *ptr2; */
+    /* *ptr2 = temp; */
+/* } */
+
+
+
 void SwapArrElements(void **arr, size_t idx1, size_t idx2) 
 {
     void *temp = arr[idx1];
@@ -56,58 +65,6 @@ size_t GetParentIdx(size_t idx_child)
 	}
 } /* option 	(i + 1) /2 - (i != 0) */
 
-void PrintHeap(heap_t *heap)
-{
-	vector_t *vec = heap->vector;
-	int i = 0, j = 0, level = 0;
-	int curIdx = 0;
-	int nodes_on_level = 1;
-	int curNode;
-	int safeStop = 100;
-	int treeSpaces1[] = { 
-		126, 0,
-		62,  126,
-		30, 62,
-		14, 30,
-		6, 14,
-		2,  6,
-		0,  2 };
-	int treeSpaces2[] = { 
-		62,  0,
-		30, 62,
-		14, 30,
-		6, 14,
-		2,  6,
-		0,  2 };
-	
-	int *treeSpaces = treeSpaces2;
-	int spacesBefore, spacesInBetween;
-	size_t vectorSize = VectorSize(vec);
-	
-	/* for (nodes_on_level = 1, i = 0; i < vectorSize; ) */
-	while (--safeStop && curIdx < *(int *)vectorSize) 
-	{
-		spacesBefore = treeSpaces[level++];
-		spacesInBetween = treeSpaces[level++]; 
-		printf("%*s", spacesBefore, "");
-		
-		for (i = 0; i < nodes_on_level; ++i, ++curIdx)
-		{
-			curNode = *(int*)VectorGetAccess(vec, curIdx);
-			printf("%02d", curNode);
-			if (i % 2) {
-				printf("%*s", spacesInBetween, "");
-			}
-			else {
-				for (j = 0; j < spacesInBetween; ++j) printf("-");
-				/* printf("%-s", half-4, ""); */
-			}
-		}
-		nodes_on_level *= 2;
-		printf("\n");
-	}
-	printf("\n\n--------------------------------------------------------------\n");
-}
 
 /*******************************************************************************
 Description:     	Creates an empty heap, according to 'is_before_func'.
@@ -152,8 +109,8 @@ int HeapPush(heap_t *heap, void *data)
 	size_t idx_child = HeapSize(heap);
 	size_t idx_parent = GetParentIdx(idx_child);
 	
-	size_t *child = VectorGetAccess(heap->vector, idx_child);		
-	size_t *parent = VectorGetAccess(heap->vector, idx_parent);
+	void *child = VectorGetAccess(heap->vector, idx_child);		
+	void *parent = VectorGetAccess(heap->vector, idx_parent);
 
 	assert(NULL != heap);	
 	assert(NULL != data);
@@ -163,7 +120,7 @@ int HeapPush(heap_t *heap, void *data)
 		return FAIL;
 	}
 	
-	while( TRUE == heap->is_before_func(*(void**)child, *(void**)parent) )
+	while( TRUE == heap->is_before_func(child, parent) )
 	{
 			SwapPtr(child, parent);
 
@@ -199,7 +156,7 @@ void *HeapPeek(const heap_t *heap)
 	
 	assert(NULL != heap);
 	
-	return *(void**)VectorGetAccess(heap->vector, idx);
+	return VectorGetAccess(heap->vector, idx);
 }
 
 /*******************************************************************************
@@ -237,4 +194,55 @@ int HeapRemove(heap_t *heap, is_match_func_t is_match, void *param);
 
 
 
+void PrintHeap(heap_t *heap)
+{
+	vector_t *vec = heap->vector;
+	int i = 0, j = 0, level = 0;
+	int curIdx = 0;
+	int nodes_on_level = 1;
+	int curNode;
+	int safeStop = 100;
+	int treeSpaces1[] = { 
+		126, 0,
+		62,  126,
+		30, 62,
+		14, 30,
+		6, 14,
+		2,  6,
+		0,  2 };
+	int treeSpaces2[] = { 
+		62,  0,
+		30, 62,
+		14, 30,
+		6, 14,
+		2,  6,
+		0,  2 };
+	
+	int *treeSpaces = treeSpaces2;
+	int spacesBefore, spacesInBetween;
+	size_t vectorSize = VectorSize(vec);
+	
+	while (--safeStop && curIdx < vectorSize)
+	{
+		spacesBefore = treeSpaces[level++];
+		spacesInBetween = treeSpaces[level++]; 
+		printf("%*s", spacesBefore, "");
+		
+		for (i = 0; i < nodes_on_level && curIdx < vectorSize; ++i, ++curIdx)
+		{
+			curNode = *(int*)VectorGetAccess(vec, curIdx);
+			printf("%02d", curNode);
+			if (i % 2) {
+				printf("%*s", spacesInBetween, "");
+			}
+			else {
+				for (j = 0; j < spacesInBetween; ++j) printf("-");
+				/* printf("%-s", half-4, ""); */
+			}
+		}
+		nodes_on_level *= 2;
+		printf("\n");
+	}
+	printf("\n\n--------------------------------------------------------------\n");
+}
 

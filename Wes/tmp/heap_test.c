@@ -10,8 +10,8 @@
 #include <stdlib.h> 	/* size_t, malloc, free, srand, rand	*/
 #include <string.h> 	/* strncmp								*/
 
-#include "heap.h"
-#include "vector.h"
+#include "../include/heap.h"
+#include "../include/vector.h"
 
 enum { FALSE = 0, TRUE = 1 };
 enum { SUCCESS = 0, FAIL = 1 };
@@ -44,7 +44,7 @@ int main(void)
 
 static int IsBefore(const void *lhs, const void *rhs)
 {
-	printf("IsBefore: lhs = %d,  rhs = %d\n", *(int *)lhs, *(int *)rhs);
+	/* printf("IsBefore: lhs = %d,  rhs = %d\n", *(int *)lhs, *(int *)rhs); */
 	return *(int *)lhs < *(int *)rhs;
 }
 
