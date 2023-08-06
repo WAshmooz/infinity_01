@@ -4,5 +4,14 @@ clear -x && gc test2/hash_test.c src2/hash.c src2/dlist.c  -o run && ./run
 
 clear -x && gc test/hash_test.c src/hash.c src/dlist.c  -o run && ./run
 
+clear -x && gc test/heap_test.c src/heap.c src/vector.c  -o run && ./run
+
+clear -x && gc tmp/heap_test.c tmp/heap.c src/vector.c  -o run && ./run
+clear -x && gc tmp/heap_test.c tmp/heap.c tmp/printHeap.c src/vector.c  -o run && ./run
+
+clear -x && gc memmove_vs_memcpy.c -o run && ./run
+
+clear -x && gc src/dhcp.c src/vector.c   -o run && ./run
+
 
 
