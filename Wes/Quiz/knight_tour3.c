@@ -120,53 +120,89 @@ static void SetLUT(lut_t lut_table[])
 }
 
 
+/* return index which we can move to from index lut_index, 
+ * there can be up to 8 different possibilites and the function 
+ * retruns randomly one of them
+ */
+static int MoveToRandomPossibleIndex(const int lut_index, lut_t lut_table[])
+{
+	int k, lut_index_new;
+	k = rand() % 8;
+	while (NON_VAL == lut_table[lut_index].arr[k]) 
+	{
+		k = rand() % 8;
+	}
+	
+	lut_index_new = lut_table[lut_index].arr[k];
+	return lut_index_new;
+}
 
-int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[],int result[])
- {
- 	int k = 0, found = 0, idx_res = 0;
- 	static size_t cnt = 0;
- 	int lut_index_new = 0; 
- 	++cnt;
- 	printf("\ncnt = %ld\n", cnt);	
-    if (ALL_ON == *bit_track) 
-    {
-        return true;
-    }
-
-    for (k = 0; k < 8; k++) 
-    {
-    /*if there is valid move that is not used yet go there*/
+/* return index which we can move to from index lut_index, 
+ * we can only move if it's free place which we didn't already been
+ * retruns -1 if there is no free place
+ */
+static int tryMoveToFreeIndex(const int lut_index, size_t *bit_track, lut_t lut_table[])
+{
+	int k, lut_index_new;
+	for (k = 0; k < 8; k++) 
+	{
+		/* first check if the move valid */
 		if (NON_VAL != lut_table[lut_index].arr[k])
 		{
-			*bit_track = BitArrSetOn(*bit_track, lut_index);
-			result[idx_res] = lut_table[lut_index].arr[k];
-			++idx_res;
 			lut_index_new = lut_table[lut_index].arr[k];
 			
 			if (free_place == BitArrGetVal(*bit_track, lut_index_new))
 			{
-				found = 1;
-				break;
+				/* found valid and free place to move */
+				return lut_index_new;
 			}
 		}
-	}	
+	}
+	
+	/* didn't find free place to jump to */
+	return -1;
+}
+
+int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[], int result[])
+{
+	int k = 0, found = 0, idx_res = 0;
+	int lut_index_new = 0; 
+	
+	static size_t cnt = 0; /* counter to check how many times the recursion occurs */
+	++cnt;
+	printf("\ncnt = %ld\n", cnt);
+	
+	if (ALL_ON == *bit_track) 
+	{
+		return true;
+	}
+	
+	lut_index_new = tryMoveToFreeIndex(lut_index, bit_track, lut_table); 
+	if (-1 != lut_index_new) {
+		*bit_track = BitArrSetOn(*bit_track, lut_index_new);
+		found = 1;
+	}
+	else 
+	{
+		lut_index_new = MoveToRandomPossibleIndex(lut_index, lut_table); 
+	}
 	
 	printSolution(bit_track,  lut_index_new);
-		
-	if (0 == found)
+	
+	if (0 == found && 1000 < cnt)
 	{
 		/*did not found a valid next move*/
 		PrintIntArray(result, LUT_SIZE);
-		printf("\n%ld\n", *bit_track);
-        return false;		
+		printf("\n%08X\n", *bit_track);
+		return false;
 	}
-
-    if (solveKTUtil(lut_index_new, bit_track,  lut_table, result)) 
-    {
-        return true;
-    }
-    
-    return false;    
+	
+	if (solveKTUtil(lut_index_new, bit_track,  lut_table, result)) 
+	{
+		return true;
+	}
+	
+	return false;    
 }
 
 
@@ -202,6 +238,7 @@ int main()
 {
     int i = 0, j = 0;
     lut_t lut_table[LUT_SIZE];
+    srand(time(NULL));
 
 
     for (i = 0; i < LUT_SIZE; i++)
