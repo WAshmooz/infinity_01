@@ -163,14 +163,15 @@ static int tryMoveToFreeIndex(const int lut_index, size_t *bit_track, lut_t lut_
 	return -1;
 }
 
-int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[], int result[])
+#define MAX_RECURSION_DEPTH 1000
+int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[])
 {
-	int k = 0, found = 0, idx_res = 0;
+	int k = 0, found_free = 0, idx_res = 0;
 	int lut_index_new = 0; 
 	
-	static size_t cnt = 0; /* counter to check how many times the recursion occurs */
-	++cnt;
-	printf("\ncnt = %ld\n", cnt);
+	static size_t recursion_counter = 0; /* counter to check how many times the recursion occurs */
+	++recursion_counter;
+	printf("\ncnt = %ld\n", recursion_counter);
 	
 	if (ALL_ON == *bit_track) 
 	{
@@ -180,7 +181,7 @@ int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[], int result[
 	lut_index_new = tryMoveToFreeIndex(lut_index, bit_track, lut_table); 
 	if (-1 != lut_index_new) {
 		*bit_track = BitArrSetOn(*bit_track, lut_index_new);
-		found = 1;
+		found_free = 1;
 	}
 	else 
 	{
@@ -189,15 +190,14 @@ int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[], int result[
 	
 	printSolution(bit_track,  lut_index_new);
 	
-	if (0 == found && 1000 < cnt)
+	if (0 == found_free && MAX_RECURSION_DEPTH < recursion_counter)
 	{
 		/*did not found a valid next move*/
-		PrintIntArray(result, LUT_SIZE);
 		printf("\n%08X\n", *bit_track);
 		return false;
 	}
 	
-	if (solveKTUtil(lut_index_new, bit_track,  lut_table, result)) 
+	if (solveKTUtil(lut_index_new, bit_track,  lut_table)) 
 	{
 		return true;
 	}
@@ -214,7 +214,7 @@ int solveKT(int x, int y, lut_t lut_table[])
 	int result[LUT_SIZE] = {0};
 	bit_track = BitArrSetOn(bit_track, lut_index);
     /*If a solution exists, print the solution*/
-    if (solveKTUtil(lut_index, &bit_track, lut_table, result)) 
+    if (solveKTUtil(lut_index, &bit_track, lut_table)) 
     {
         return true;
     } 
