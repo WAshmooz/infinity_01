@@ -197,12 +197,14 @@ int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[])
 		return false;
 	}
 	
+	return solveKTUtil(lut_index_new, bit_track,  lut_table);
+	/*
 	if (solveKTUtil(lut_index_new, bit_track,  lut_table)) 
 	{
 		return true;
 	}
 	
-	return false;    
+	return false;    */
 }
 
 
