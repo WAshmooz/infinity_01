@@ -171,7 +171,6 @@ int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[])
 	
 	static size_t recursion_counter = 0; /* counter to check how many times the recursion occurs */
 	++recursion_counter;
-	printf("\ncnt = %ld\n", recursion_counter);
 	
 	if (ALL_ON == *bit_track) 
 	{
@@ -188,6 +187,7 @@ int solveKTUtil(int lut_index, size_t *bit_track, lut_t lut_table[])
 		lut_index_new = MoveToRandomPossibleIndex(lut_index, lut_table); 
 	}
 	
+	printf("\ncnt = %ld, found free to jump = %d\n", recursion_counter, found_free);
 	printSolution(bit_track,  lut_index_new);
 	
 	if (0 == found_free && MAX_RECURSION_DEPTH < recursion_counter)
