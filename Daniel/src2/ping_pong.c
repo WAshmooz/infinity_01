@@ -7,6 +7,8 @@
 ****Description:		Ping Pong 
 
 **************************	Header & Macro	********************************/
+#define _POSIX_SOURCE /*struct sigation*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -14,27 +16,26 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-typedef struct 
-{
-	void* hendler_fun_ptr; 
-}sigaction_t;
+
 /***************************	Prototypes	********************************/
-void handle_signal(int signum);
+void HandleSignal(int signum);
 
 /********************************	Main	********************************/
 int g_flag = 0;
 
 int main() 
 {
-	sigaction_t sigaction_struct;
-
-	/*TODO*/
+	int ststus_sigaction = 0;
+	struct sigaction handler = {0};
+	pid_t child_pid = 0;
 	
-    sigaction(SIGUSR1, &sigaction_struct, NULL);
-    sigaction(SIGUSR2, &sigaction_struct, NULL);
+	handler.sa_handler = &HandleSignal;
+	
+    ststus_sigaction = sigaction(SIGUSR1, &handler, NULL);
+    ststus_sigaction = sigaction(SIGUSR2, &handler, NULL);
 
     child_pid = fork();
-
+	
     if (child_pid == 0) 
     {
         /*Child process*/
@@ -48,26 +49,28 @@ int main()
             }
             
             g_flag = 0;
+            printf("Child sending SIGUSR2\n");
             kill(getppid(), SIGUSR2);
         }
     } 
     
     else if (child_pid > 0) 
     {
+    	int count = 5;
         /*Parent process*/
-        printf("Parent sending SIGUSR1\n");
         
-        while (1) 
+        while (count) 
         {
-        	while(!g_flag)
+        	while(g_flag )
         	{
+        		--count;
             	 pause(); /*Parent waits for signal from child*/
             }
             
-            g_flag = 0;
+            g_flag = 1;
+            printf("Parent sending SIGUSR1\n");
             kill(child_pid, SIGUSR1);
         }
-    }
     } 
     
     else 
@@ -75,30 +78,26 @@ int main()
         perror("Fork failed");
         return 1;
     }
-
+	
+	kill(child_pid, SIGTERM);
+	
     return 0;
 }
 /***************************	Functions	********************************/
-void handle_signal(int signum) 
+void HandleSignal(int signum) 
 {
-    if (getpid() == child_pid) 
+	/*Child process*/
+    if (signum == SIGUSR1) 
     {
-        if (signum == SIGUSR1) 
-        {
-            printf("Child received SIGUSR1\n");
-            g_flag = 0;
-        }
-    } 
-    
-    else 
+        printf("Child received SIGUSR1\n");
+        g_flag = 1;
+    }
+	/*Parent process*/   
+    else /*signum == SIGUSR2*/ 
     {
-        if (signum == SIGUSR2) 
-        {
             printf("Parent received SIGUSR2\n");
             
-            g_flag = 1;
-        }
-        }
+            g_flag = 0;
     }
 }
 
