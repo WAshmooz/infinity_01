@@ -1,0 +1,29 @@
+#COMPILER
+CC	= gcc
+CFLAGS	+=  -ansi -pedantic-errors -Wall -Wextra -lrt -pthread -fPIC
+LDFLAGS:= -shared
+
+# Source files for USER_UP and WD_PROCESS
+SRCS_USER_UP = DA_USER_AP.c DA_WATCHDOG.c aux_funcs.c
+SRCS_WD_PROCESS = watchdog_process.c aux_funcs.c
+
+# Object files for USER_UP and WD_PROCESS
+OBJS_RUN1 = $(SRCS_USER_UP:.c=.o)
+OBJS_RUN2 = $(SRCS_WD_PROCESS:.c=.o)
+
+debug: CFLAGS+=-g
+debug: all
+
+release: CFLAGS+=-DNDEBUG
+release: all
+
+all: DA_USER_AP watchdog
+
+DA_USER_AP: $(OBJS_RUN1)
+	$(CC) $(CFLAGS) -o $@ $^
+
+watchdog: $(OBJS_RUN2)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
