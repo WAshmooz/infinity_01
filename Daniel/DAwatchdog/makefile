@@ -1,6 +1,6 @@
 #COMPILER
 CC	= gcc
-CFLAGS	+=  -ansi -pedantic-errors -Wall -Wextra -lrt -pthread -fPIC
+CFLAGS	+= -I ./ -L. -Wl,-rpath=. -ansi -pedantic-errors -Wall -Wextra -lrt -pthread -fPIC
 LDFLAGS:= -shared
 
 # Source files for USER_UP and WD_PROCESS
@@ -19,11 +19,11 @@ release: all
 
 all: DA_USER_AP watchdog
 
-DA_USER_AP: $(OBJS_RUN1)
-	$(CC) $(CFLAGS) -o $@ $^
+DA_USER_AP: $(OBJS_RUN1) scheduler.so
+	$(CC) $(CFLAGS) -o $@ $^ 
 
-watchdog: $(OBJS_RUN2)
-	$(CC) $(CFLAGS) -o $@ $^
+watchdog: $(OBJS_RUN2) scheduler.so
+	$(CC) $(CFLAGS) -o $@ $^ 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<

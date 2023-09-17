@@ -20,11 +20,9 @@
 #include <fcntl.h>/*O_CREAT for sem_op*/
 #include <errno.h>
 
-
 #include "aux_funcs.h"
 
 pthread_t tid = 1; 
-
 
 int main(int argc, char *argv[])
 {
@@ -48,7 +46,7 @@ int main(int argc, char *argv[])
     pthread_join(tid, NULL);
 
 	/*End watchdoog*/
-	DNR();
+	/*DNR();*/
 
 	return (0);
 }

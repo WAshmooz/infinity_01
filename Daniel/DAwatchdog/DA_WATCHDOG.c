@@ -119,6 +119,8 @@ int *WatchdogThread(wd_args_t *wd_args_)
     ExitIfError(ILRD_SUCCESS == ststus_sigaction, "Eror: sigaction1 failed", ILRD_FALSE); 
 
 	printf("Fork START\n");
+
+    
     pid = fork(); 
     if (0 == pid)
     {
