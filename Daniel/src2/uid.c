@@ -15,6 +15,7 @@
 #include <unistd.h> 	/* pid_t  			*/
 #include <ifaddrs.h> 	/* getifaddrs    	*/ 
 #include <arpa/inet.h>  /* INET6_ADDRSTRLEN */
+#include <pthread.h>    /*pthread_mutex_t*/
 
 #include "uid.h"
 
@@ -28,13 +29,17 @@ Description:     	Creates an UID.
 Return value:    	uid_t on success, UID_BAD on fail.
 Time Complexity: 	O(1).         	
 ******************************************************************************/
+static pthread_mutex_t uid_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 Uid_t UidCreate(void)
 {
 	static size_t count_st = 0;
 	Uid_t uid;
     char ip[INET6_ADDRSTRLEN] = {0};
     struct ifaddrs *ifaddr, *ifa;
-    	
+
+    /*Lock the mutex to make this function thread-safe*/
+    pthread_mutex_lock(&uid_mutex);
 	uid.pid = getpid();
 	uid.timestamp = time(NULL);
 	uid.count = count_st;
@@ -42,11 +47,15 @@ Uid_t UidCreate(void)
 	
     if (uid.timestamp == -1) 
     {
+        /*Unlock the mutex before returning on error*/
+        pthread_mutex_unlock(&uid_mutex);
 		return UID_BAD;
     }	
 
     if (getifaddrs(&ifaddr) == -1) 
     {
+        /*Unlock the mutex before returning on error*/
+        pthread_mutex_unlock(&uid_mutex);
 		return UID_BAD;
     }
 
@@ -66,9 +75,12 @@ Uid_t UidCreate(void)
             } 
         }
     }
-    
+  
     memcpy(uid.ip, ip, IP_SIZE);
     freeifaddrs(ifaddr);
+
+    /*Unlock the mutex before returning*/
+    pthread_mutex_unlock(&uid_mutex); 
     
     return uid;
 }
