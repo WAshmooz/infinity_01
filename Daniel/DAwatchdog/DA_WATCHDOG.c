@@ -21,28 +21,20 @@
 #include <errno.h>
 
 #include "aux_funcs.h"
-
+#include "common.h"	/* WDHandler, assert, wd_args_t, pid_t, assert, 
+						exit, atoi, puts									*/
 #define SEM_NAME "/wd_semaphore"
 
-typedef struct wd_args
-{
-	char **argv_list;
-    int argc;
-	size_t signal_intervals;
-	size_t max_fails;
-	sem_t *sem; 
-
-} wd_args_t;
 
 
+/****************************Function prototypes*******************************/
 int *WatchdogThread(wd_args_t *wd_args_);
-static int SignalMaskHandler(void);
+int SignalMaskHandler(void);
 static void SignalCountHandle(int signum_);
+
 
 volatile int g_count = 1;
 extern pthread_t tid; 
-
-
 
 
 /*User function to initialize the watchdog*/
@@ -120,7 +112,7 @@ int *WatchdogThread(wd_args_t *wd_args_)
 
 	printf("Fork START\n");
 
-    
+
     pid = fork(); 
     if (0 == pid)
     {
@@ -143,7 +135,7 @@ int *WatchdogThread(wd_args_t *wd_args_)
     return NULL;   
 } 
 
-static int SignalMaskHandler(void)
+int SignalMaskHandler(void)
 {
     sigset_t mask_set;
 

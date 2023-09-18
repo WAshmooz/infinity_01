@@ -19,10 +19,10 @@ release: all
 
 all: DA_USER_AP watchdog
 
-DA_USER_AP: $(OBJS_RUN1) scheduler.so
+DA_USER_AP: $(OBJS_RUN1) scheduler.so 
 	$(CC) $(CFLAGS) -o $@ $^ 
 
-watchdog: $(OBJS_RUN2) scheduler.so
+watchdog: $(OBJS_RUN2) scheduler.so 
 	$(CC) $(CFLAGS) -o $@ $^ 
 
 %.o: %.c

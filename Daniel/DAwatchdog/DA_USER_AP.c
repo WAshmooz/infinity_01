@@ -7,18 +7,13 @@
 ****Description:		Watchdog (simple pase)
 
 **************************	Header & Macro	********************************/
-#define _POSIX_SOURCE /*include expand library of signal.h (sigation)*/
-#include <assert.h>
 #include <stdio.h> /*fprintf, scanf*/
-#include <stdlib.h> /*system */
 #include <unistd.h> /*pid_t*/
 #include <pthread.h>
-#include <sys/types.h>
+
 #include <signal.h> /*sigaction*/
 #include <semaphore.h>	/*	sem_op	*/
-#include <string.h>
 #include <fcntl.h>/*O_CREAT for sem_op*/
-#include <errno.h>
 
 #include "aux_funcs.h"
 
@@ -39,8 +34,9 @@ int main(int argc, char *argv[])
 	
 	while(i < 10)
 	{
+		++i;
 		printf("                \nUSER APP PROGRAM [pid:%d] \n\n", getpid());
-		sleep(1);
+		sleep(3);
 	}
 	
     pthread_join(tid, NULL);
