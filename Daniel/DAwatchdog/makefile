@@ -17,12 +17,12 @@ debug: all
 release: CFLAGS+=-DNDEBUG
 release: all
 
-all: DA_USER_AP watchdog
+all: user_app.out watchdog.out
 
-DA_USER_AP: $(OBJS_RUN1) scheduler.so 
+user_app.out: $(OBJS_RUN1) scheduler.so 
 	$(CC) $(CFLAGS) -o $@ $^ 
 
-watchdog: $(OBJS_RUN2) scheduler.so 
+watchdog.out: $(OBJS_RUN2) scheduler.so 
 	$(CC) $(CFLAGS) -o $@ $^ 
 
 %.o: %.c

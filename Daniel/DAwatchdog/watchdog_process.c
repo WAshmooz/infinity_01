@@ -20,6 +20,7 @@
 #include <fcntl.h>/*O_CREAT for sem_op*/
 #include <errno.h>
 
+#include "scheduler.h"
 #include "common.h"	/* WDHandler, assert, wd_args_t, pid_t, assert, 
 						exit, atoi, puts									*/
 #include "aux_funcs.h"

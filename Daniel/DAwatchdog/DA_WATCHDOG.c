@@ -94,7 +94,7 @@ int *WatchdogThread(wd_args_t *wd_args_)
     int i = 0;
 
     sigset_t signal_set = {0};
-	char *args[] = {"./watchdog", NULL};
+	char *args[] = {"./watchdog.out", NULL};
     int ststus_sigaction = 0; /*SUCCESS*/
     struct sigaction handler = {0};	
 
@@ -106,11 +106,11 @@ int *WatchdogThread(wd_args_t *wd_args_)
     sigprocmask(SIG_UNBLOCK, &sigset_to_unblock, NULL);
 
     /*Create signal handler for SIGUSR1*/
-	handler.sa_handler = &SignalCountHandle;
+    handler.sa_handler = &SignalCountHandle;
     ststus_sigaction = sigaction(SIGUSR1, &handler, NULL);
     ExitIfError(ILRD_SUCCESS == ststus_sigaction, "Eror: sigaction1 failed", ILRD_FALSE); 
 
-	printf("Fork START\n");
+    printf("Fork START\n");
 
 
     pid = fork(); 
