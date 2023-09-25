@@ -30,27 +30,34 @@
 
 /****************************Function prototypes*******************************/
 int *WatchdogThread(wd_args_t *wd_args_);
-int SignalMaskHandler(void);
+int BlockAllSignalsHandler(void); /*Block all signals*/
+int BlockSignalHandler(void);   /*Block SIGUSR1, SIGUSR2*/
+int UnBlockSignalHandler(void); /*UnBlock SIGUSR1, SIGUSR2*/
 static void SignalCountHandle(int signum_);
 int WDSchedulerManage(wd_args_t *wd_args_);
 static int StamScheduler(void *params);
 void printWdArgs(const wd_args_t *args);
 
-volatile int g_count = 1;
-extern pthread_t tid; 
+/******************************Global variables********************************/
+volatile int g_fail_counter;
+volatile int g_is_not_resucitate;
+volatile int g_is_child_ready;
 
-    char buf_max_fails[10]; 
-    char buf_signal_intervals[10];
-    
+extern pthread_t tid; 
+pid_t wd_process_id;
+char buf_max_fails[10]; 
+char buf_signal_intervals[10];
+
+/**********************************Functions***********************************/
+
 /*User function to initialize the watchdog*/
 int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_fails) 
 {
     int status = 0;
     wd_args_t *wd_args = NULL;
 
-
-    status = SignalMaskHandler();
-    RETURN_IF_ERROR(0 == status, "SignalMaskHandler error", status);
+    status = BlockSignalHandler();
+    RETURN_IF_ERROR(0 == status, "BlockSignalHandler error", status);
 
     /*Alocate for struct*/
     wd_args = (wd_args_t *)malloc(sizeof(wd_args_t));
@@ -77,7 +84,7 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_
 
     wd_args->max_fails = max_fails;
     wd_args->signal_intervals = signal_intervals;
-    wd_args->is_user_prog = 0;
+    wd_args->is_user_prog = IS_USER_PROG;
     wd_args->signal_pid = getppid();
     wd_args->sem = sem_open(SEM_NAME, O_CREAT, 0666, 0);
     RETURN_IF_ERROR(SEM_FAILED != wd_args->sem, "sem_open error", ILRD_FALSE);
@@ -87,7 +94,8 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_
     RETURN_IF_ERROR(0 == status, "Eror: creating thread", ILRD_FALSE); 
 
     sleep(1);
-
+    /*sem_wait(wd_args_->sem);*/
+    /*RETURN_IF_ERROR(-1 != sem_close(wd_args_->sem), "sem_close error", ILRD_FALSE);*/
 
     printf("MakeMeImurtal after wait\n");
 
@@ -101,9 +109,6 @@ int DNR(void)
     return (0);
 }
 
-
-
-
 int *WatchdogThread(wd_args_t *wd_args_)
 {	
     pid_t pid;
@@ -115,12 +120,9 @@ int *WatchdogThread(wd_args_t *wd_args_)
     int ststus_sigaction = 0; /* SUCCESS */
     struct sigaction handler = {0};	
 
-    /* Unblock SIGUSR1 and SIGUSR2 */
-    sigset_t sigset_to_unblock;
-    sigemptyset(&sigset_to_unblock);
-    sigaddset(&sigset_to_unblock, SIGUSR1);
-    sigaddset(&sigset_to_unblock, SIGUSR2);
-    sigprocmask(SIG_UNBLOCK, &sigset_to_unblock, NULL);
+    /*Block all signals and Unblock SIGUSR1 and SIGUSR2 */
+    ExitIfError(0 != BlockAllSignalsHandler(), "Error: sigaction1 failed", ILRD_FALSE);
+    ExitIfError(0 != UnBlockSignalHandler(), "Error: sigaction1 failed", ILRD_FALSE);
 
     /* Create signal handler for SIGUSR1 */
     handler.sa_handler = &SignalCountHandle;
@@ -142,8 +144,6 @@ int *WatchdogThread(wd_args_t *wd_args_)
     {
         /*wait for feedback from the watchdog*/
         sleep(2);
-        /*sem_wait(wd_args_->sem);*/
-	    /*RETURN_IF_ERROR(-1 != sem_close(wd_args_->sem), "sem_close error", ILRD_FALSE);*/
 
         status = WDSchedulerManage(wd_args_);
     }
@@ -151,46 +151,6 @@ int *WatchdogThread(wd_args_t *wd_args_)
 
     return NULL;   
 } 
-
-int SignalMaskHandler(void)
-{
-    sigset_t mask_set;
-
-    /*Block all signals*/
-    /*Initialize an empty signal mask_set*/
-    RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
-
-    /*Add SIGUSR1 and SIGUSR2 to the mask set*/
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1), "sigaddset error", ILRD_FALSE);
-
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2), "sigaddset error", ILRD_FALSE);
-        
-    /*Block mask_set (SIGUSR1, SIGUSR2)*/
-    sigprocmask(SIG_BLOCK, &mask_set, NULL);
-
-    return 0; /*mask sucsessfully*/
-
-}
-
-
-static void SignalCountHandle(int signum) 
-{
-    printf("[%zu]handlerFun_of WatchdogThread\n", (size_t)pthread_self());
-
-    if (signum == SIGUSR1) 
-    {
-        g_count = 0;
-    }
-}
-
-static int StamScheduler(void *params_)
-{
-    wd_args_t *wd_args = (wd_args_t *)params_;
-    printf("BLALALALALALA\n");
-    printWdArgs(wd_args);
-    printf("..\n");
-    return 0;
-}
 
 
 int WDSchedulerManage(wd_args_t *wd_args_)
@@ -216,6 +176,79 @@ int WDSchedulerManage(wd_args_t *wd_args_)
     return (ILRD_SUCCESS == ret_status ? ILRD_SUCCESS : ILRD_FALSE);
 }
 
+static void SignalCountHandle(int signum) 
+{
+    printf("[%zu]handlerFun_of WatchdogThread\n", (size_t)pthread_self());
+
+    if (signum == SIGUSR1) 
+    {
+        g_fail_counter = 0;
+    }
+}
+
+static int StamScheduler(void *params_)
+{
+    wd_args_t *wd_args = (wd_args_t *)params_;
+    printf("BLALALALALALA\n");
+    printWdArgs(wd_args);
+    printf("..\n");
+    return 0;
+}
+
+int BlockAllSignalsHandler(void) 
+{
+    sigset_t all_signals;
+    
+    /*Initialize the set to include all possible signals*/
+    if (sigfillset(&all_signals) != 0) 
+     RETURN_IF_ERROR(sigfillset(&all_signals) != 0, "sigprocmask error", ILRD_FALSE);
+
+    /*Block all signals*/
+    if (sigprocmask(SIG_BLOCK, &all_signals, NULL) != 0) 
+    RETURN_IF_ERROR(sigprocmask(SIG_BLOCK, &all_signals, NULL) != 0,
+                                                    "sigprocmask error", ILRD_FALSE);
+    
+    return 0; /*BlockAll sucsessfully*/
+}
+
+int BlockSignalHandler(void)
+{
+    sigset_t mask_set;
+
+    /*Block all signals*/
+    /*Initialize an empty signal mask_set*/
+    RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
+
+    /*Add SIGUSR1 and SIGUSR2 to the mask set*/
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1), "sigaddset error", ILRD_FALSE);
+
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2), "sigaddset error", ILRD_FALSE);
+        
+    /*Block mask_set (SIGUSR1, SIGUSR2)*/
+    sigprocmask(SIG_BLOCK, &mask_set, NULL);
+
+    return 0; /*Block sucsessfully*/
+
+}
+
+int UnBlockSignalHandler(void)
+{
+    sigset_t mask_set;
+
+    /*Block all signals*/
+    /*Initialize an empty signal mask_set*/
+    RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
+
+    /*Add SIGUSR1 and SIGUSR2 to the mask set*/
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1), "sigaddset error", ILRD_FALSE);
+
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2), "sigaddset error", ILRD_FALSE);
+        
+    /*Block mask_set (SIGUSR1, SIGUSR2)*/
+    sigprocmask(SIG_UNBLOCK, &mask_set, NULL);
+
+    return 0; /*UnBlock sucsessfully*/
+}
 
 /* Helper function for PRINT ONLY */
 void printWdArgs(const wd_args_t *args) 

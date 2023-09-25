@@ -17,6 +17,8 @@
 
 #include "aux_funcs.h"	/* RETURN_IF_ERROR, ExitIfError	*/
 
+/*Define _DEBUG to enable debugging code*/
+#define _DEBUG
 #define SEM_NAME "/wd_semaphore"
 
 enum 
@@ -60,12 +62,12 @@ typedef struct wd_args
 } wd_args_t;
 
 
+/*Define DEBUG_ONLY macro*/
 #ifdef _DEBUG
-	#define DEBUG_ONLY(expression) expression
+#define DEBUG_ONLY(expression) expression
 #else
-	#define DEBUG_ONLY(expression)
-#endif
-
+#define DEBUG_ONLY(expression)
+#endif	/*in the code: DEBUG_ONLY(printf("BLABLA");)*/
 
 
 /******************************************************************************/
