@@ -32,21 +32,22 @@
 int *WatchdogThread(wd_args_t *wd_args_);
 int SignalMaskHandler(void);
 static void SignalCountHandle(int signum_);
-int WDSchedulerManage(void);
+int WDSchedulerManage(wd_args_t *wd_args_);
 static int StamScheduler(void *params);
 void printWdArgs(const wd_args_t *args);
 
 volatile int g_count = 1;
 extern pthread_t tid; 
 
-
+    char buf_max_fails[10]; 
+    char buf_signal_intervals[10];
+    
 /*User function to initialize the watchdog*/
 int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_fails) 
 {
     int status = 0;
     wd_args_t *wd_args = NULL;
-    char buf_max_fails[10]; 
-    char buf_signal_intervals[10];
+
 
     status = SignalMaskHandler();
     RETURN_IF_ERROR(0 == status, "SignalMaskHandler error", status);
@@ -78,16 +79,12 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_
     wd_args->signal_intervals = signal_intervals;
     wd_args->is_user_prog = 0;
     wd_args->signal_pid = getppid();
-    wd_args->sem = sem_open("SEM_NAME", O_CREAT, 0666, 0);
+    wd_args->sem = sem_open(SEM_NAME, O_CREAT, 0666, 0);
     RETURN_IF_ERROR(SEM_FAILED != wd_args->sem, "sem_open error", ILRD_FALSE);
 
     /*Create the watchdog thread*/
     status = pthread_create(&tid, NULL, (void *(*)(void *))&WatchdogThread, wd_args);
     RETURN_IF_ERROR(0 == status, "Eror: creating thread", ILRD_FALSE); 
-
-    /*wait for feedback from the watchdog*/
-    /*sem_wait(wd_args->sem);
-	RETURN_IF_ERROR(-1 != sem_close(wd_args->sem), "sem_close error", ILRD_FALSE);*/
 
     sleep(1);
 
@@ -111,6 +108,7 @@ int *WatchdogThread(wd_args_t *wd_args_)
 {	
     pid_t pid;
     int i = 0;
+    int status = 0;
 
     sigset_t signal_set = {0};
     char *args[] = {"./watchdog.out", NULL};
@@ -136,18 +134,20 @@ int *WatchdogThread(wd_args_t *wd_args_)
     if (0 == pid)
     {
         execvp(wd_args_->argv_list[0], wd_args_->argv_list);
-
         printf("WE ARE NOT SUPPOSED TO GET HERE\n");
+        assert(1 == 0);
     }
     
-    for (i = 0; i < 10; i++)
+    if (0 < pid)
     {
-        printf("Watchdog_Thread sending signal\n");
-        sleep(3);
+        /*wait for feedback from the watchdog*/
+        sleep(2);
+        /*sem_wait(wd_args_->sem);*/
+	    /*RETURN_IF_ERROR(-1 != sem_close(wd_args_->sem), "sem_close error", ILRD_FALSE);*/
 
-        kill(pid, SIGUSR1);
-        sleep(1);
+        status = WDSchedulerManage(wd_args_);
     }
+
 
     return NULL;   
 } 
@@ -183,22 +183,22 @@ static void SignalCountHandle(int signum)
     }
 }
 
-static int StamScheduler(void *params)
+static int StamScheduler(void *params_)
 {
-    UNUSED(params);
-
+    wd_args_t *wd_args = (wd_args_t *)params_;
+    printf("BLALALALALALA\n");
+    printWdArgs(wd_args);
     printf("..\n");
     return 0;
 }
 
 
-int WDSchedulerManage(void)
+int WDSchedulerManage(wd_args_t *wd_args_)
 {
     int ret_status = 0;
-
     scheduler_t *wd_scheduler = NULL;
 
-    printf("\n\nWDSchedulerManage START1\n\n");
+    printf("\n\nWDSchedulerManage START Thread\n\n");
 
     /*Create scheduler*/
     wd_scheduler = SchedCreate();
@@ -206,7 +206,7 @@ int WDSchedulerManage(void)
 
     /*SchedAdd(wd_scheduler, SendSignal, NULL, 1);*/
     /*ExitIfError(UID_BAD == SchedAdd(wd_scheduler, SendSignal, NULL, 1), "Failed to SchedAdd!\n", -1);*/
-    SchedAdd(wd_scheduler, StamScheduler, NULL, 1);
+    SchedAdd(wd_scheduler, StamScheduler, wd_args_, wd_args_->signal_intervals);
 
     ret_status = SchedRun(wd_scheduler);
 

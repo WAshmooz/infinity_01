@@ -25,6 +25,8 @@
 						exit, atoi, puts									*/
 #include "aux_funcs.h"
 
+#define SEM_NAME "/wd_semaphore"
+
 static void SignalCountHandle(int signum);
 int WDSchedulerManage(void);
 int StamScheduler(void *params);
@@ -53,16 +55,11 @@ int main(int argc, char *argv[])
     ststus_sigaction = sigaction(SIGUSR1, &handler, NULL);
     ExitIfError(ILRD_SUCCESS == ststus_sigaction, "Eror: sigaction1 failed", ILRD_FALSE); 
 
+    wd_args.sem = sem_open(SEM_NAME, O_CREAT, 0666, 0);
+    sem_post(wd_args.sem);
     WDSchedulerManage();
 
-    for ( i = 0; i < 10; i++)
-    {
-        /*sleep(3);*/
-        printf("                                Watchdog_Process sending signal\n");
-        kill(getppid(), SIGUSR1);
-        sleep(1);
 
-    }
     
     printf("                                STARTING watchdog_process1 end\n");
 
@@ -81,7 +78,7 @@ static void SignalCountHandle(int signum)
 
 int StamScheduler(void *params)
 {
-    UNUSED(params);
+    UNUSED(params); /*getppid not need to save pid to get it -> kill*/
 
     printf("..\n");
     return 0;
@@ -94,7 +91,7 @@ int WDSchedulerManage(void)
 	
 	scheduler_t *wd_scheduler = NULL;
 	
-    printf("\n\nWDSchedulerManage START1\n\n");
+    printf("\n\nWDSchedulerManage START1 Process\n\n");
 
 	/*Create scheduler*/
 	wd_scheduler = SchedCreate();
