@@ -51,10 +51,9 @@ enum
 typedef struct wd_args
 {
 	char **argv_list;
-    int argc;
 	size_t signal_intervals;
 	size_t max_fails;
-	int is_user_prog;
+	int is_user_prog; 
 	pid_t signal_pid;
 	sem_t *sem; 
 

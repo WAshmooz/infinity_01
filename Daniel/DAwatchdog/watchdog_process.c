@@ -28,6 +28,7 @@
 static void SignalCountHandle(int signum);
 int WDSchedulerManage(void);
 int StamScheduler(void *params);
+void printWdArgs(const wd_args_t *args);
 
 volatile int g_count = 1;
 
@@ -35,27 +36,35 @@ volatile int g_count = 1;
 
 int main(int argc, char *argv[])
 {
+    
     int i = 0;
 
     int ststus_sigaction = 0; /*SUCCESS*/
     struct sigaction handler = {0};	    /*Create signal handler for SIGUSR1*/
+        
 
-    WDSchedulerManage();
+    wd_args_t wd_args; /*Create a wd_args_t structure*/
+    wd_args.argv_list = argv;
+    printf("                                STARTING watchdog_process1\n");
 
-    printf("                                STARTING watchdog_process\n");
+    printWdArgs(&wd_args); /*Pass the address of wd_args to printWdArgs*/
+
 	handler.sa_handler = &SignalCountHandle;
     ststus_sigaction = sigaction(SIGUSR1, &handler, NULL);
     ExitIfError(ILRD_SUCCESS == ststus_sigaction, "Eror: sigaction1 failed", ILRD_FALSE); 
 
+    WDSchedulerManage();
+
     for ( i = 0; i < 10; i++)
     {
+        /*sleep(3);*/
         printf("                                Watchdog_Process sending signal\n");
         kill(getppid(), SIGUSR1);
-        sleep(1);
         sleep(1);
 
     }
     
+    printf("                                STARTING watchdog_process1 end\n");
 
     return 0;
 }
@@ -74,7 +83,7 @@ int StamScheduler(void *params)
 {
     UNUSED(params);
 
-    printf("Scheduler working\n");
+    printf("..\n");
     return 0;
 }
 
@@ -85,6 +94,8 @@ int WDSchedulerManage(void)
 	
 	scheduler_t *wd_scheduler = NULL;
 	
+    printf("\n\nWDSchedulerManage START1\n\n");
+
 	/*Create scheduler*/
 	wd_scheduler = SchedCreate();
 	ExitIfError(NULL != wd_scheduler, "Failed to create a WatchDog Scheduler!\n", -1);
@@ -100,3 +111,20 @@ int WDSchedulerManage(void)
 	/*	return if scheduler has successfully finished */
 	return (ILRD_SUCCESS == ret_status ? ILRD_SUCCESS : ILRD_FALSE);
 }
+
+
+
+
+void printWdArgs(const wd_args_t *args) 
+{
+    int i = 0;
+    printf("wd_process_args:\n");
+    printf("  argv_list:\n");
+
+    while (NULL != args->argv_list[i]) 
+    {
+        printf("    argv_list[%d]: %s\n", i, args->argv_list[i]);
+        ++i;
+    }
+}
+
