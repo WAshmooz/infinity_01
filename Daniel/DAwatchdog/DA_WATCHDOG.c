@@ -37,7 +37,7 @@ static void SignalCountHandle(int signum_);
 int WDSchedulerManage(wd_args_t *wd_args_);
 static int StamScheduler(void *params);
 void printWdArgs(const wd_args_t *args);
-
+int DoNotResuscitate(void);
 /******************************Global variables********************************/
 volatile int g_fail_counter;
 volatile int g_is_not_resucitate;
@@ -51,7 +51,8 @@ char buf_signal_intervals[10];
 /**********************************Functions***********************************/
 
 /*User function to initialize the watchdog*/
-int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_fails) 
+int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
+                                                             size_t max_fails) 
 {
     int status = 0;
     wd_args_t *wd_args = NULL;
@@ -61,7 +62,8 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_
 
     /*Alocate for struct*/
     wd_args = (wd_args_t *)malloc(sizeof(wd_args_t));
-    RETURN_IF_ERROR(NULL != wd_args, "Failed to allocate memory for wd_args struct!\n", EXIT_FAILURE);
+    RETURN_IF_ERROR(NULL != wd_args,
+             "Failed to allocate memory for wd_args struct!\n", EXIT_FAILURE);
 
     /*	asserts */
     assert(signal_intervals);
@@ -69,11 +71,13 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_
 
     /*Int to ASCI to pass signal_intervals & max_fails in argv_list*/
     snprintf(buf_max_fails, sizeof(buf_max_fails), "%d", max_fails); 
-    snprintf(buf_signal_intervals, sizeof(buf_signal_intervals), "%d", signal_intervals); 
+    snprintf(buf_signal_intervals, sizeof(buf_signal_intervals),
+                                                     "%d", signal_intervals); 
 
     /*Allocate memory for argv_list (+2 for NULL and program_name)*/ 
     wd_args->argv_list = (char **)(calloc(argc_ + 4, sizeof(char *)));
-    RETURN_IF_ERROR(NULL != wd_args->argv_list, "Eror: allocate arg_list", ILRD_FALSE);
+    RETURN_IF_ERROR(NULL != wd_args->argv_list,
+                                         "Eror: allocate arg_list", ILRD_FALSE);
 
     /*Set wd_args*/
     wd_args->argv_list[0] = "./watchdog.out";
@@ -90,12 +94,14 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals, size_t max_
     RETURN_IF_ERROR(SEM_FAILED != wd_args->sem, "sem_open error", ILRD_FALSE);
 
     /*Create the watchdog thread*/
-    status = pthread_create(&tid, NULL, (void *(*)(void *))&WatchdogThread, wd_args);
+    status = pthread_create(&tid, NULL, (void *(*)(void *))&WatchdogThread,
+                                                                     wd_args);
     RETURN_IF_ERROR(0 == status, "Eror: creating thread", ILRD_FALSE); 
 
-    sleep(1);
-    /*sem_wait(wd_args_->sem);*/
-    /*RETURN_IF_ERROR(-1 != sem_close(wd_args_->sem), "sem_close error", ILRD_FALSE);*/
+    
+    sem_wait(wd_args->sem);
+    RETURN_IF_ERROR(0 == sem_close(wd_args->sem),
+                                             "sem_close error", ILRD_FALSE);
 
     printf("MakeMeImurtal after wait\n");
 
@@ -113,7 +119,6 @@ int *WatchdogThread(wd_args_t *wd_args_)
 {	
     pid_t pid;
     int i = 0;
-    int status = 0;
 
     sigset_t signal_set = {0};
     char *args[] = {"./watchdog.out", NULL};
@@ -121,13 +126,16 @@ int *WatchdogThread(wd_args_t *wd_args_)
     struct sigaction handler = {0};	
 
     /*Block all signals and Unblock SIGUSR1 and SIGUSR2 */
-    ExitIfError(0 != BlockAllSignalsHandler(), "Error: sigaction1 failed", ILRD_FALSE);
-    ExitIfError(0 != UnBlockSignalHandler(), "Error: sigaction1 failed", ILRD_FALSE);
+    ExitIfError(0 == BlockAllSignalsHandler(),
+                        "Error: BlockAllSignalsHandler failed", ILRD_FALSE);
+    ExitIfError(0 == UnBlockSignalHandler(),
+                        "Error: UnBlockSignalHandler failed", ILRD_FALSE);
 
     /* Create signal handler for SIGUSR1 */
     handler.sa_handler = &SignalCountHandle;
     ststus_sigaction = sigaction(SIGUSR1, &handler, NULL);
-    ExitIfError(ILRD_SUCCESS == ststus_sigaction, "Error: sigaction1 failed", ILRD_FALSE); 
+    ExitIfError(ILRD_SUCCESS == ststus_sigaction,
+                                     "Error: sigaction1 failed", ILRD_FALSE); 
 
     printf("Fork START\n");
     printWdArgs(wd_args_);
@@ -142,10 +150,12 @@ int *WatchdogThread(wd_args_t *wd_args_)
     
     if (0 < pid)
     {
+        wd_args_->signal_pid = pid; /*child pid*/
+        wd_args_->is_user_prog = IS_USER_PROG;
         /*wait for feedback from the watchdog*/
         sleep(2);
 
-        status = WDSchedulerManage(wd_args_);
+        WDSchedulerManage(wd_args_);
     }
 
 
@@ -162,10 +172,12 @@ int WDSchedulerManage(wd_args_t *wd_args_)
 
     /*Create scheduler*/
     wd_scheduler = SchedCreate();
-    ExitIfError(NULL != wd_scheduler, "Failed to create a WatchDog Scheduler!\n", -1);
+    ExitIfError(NULL != wd_scheduler,
+                             "Failed to create a WatchDog Scheduler!\n", -1);
 
     /*SchedAdd(wd_scheduler, SendSignal, NULL, 1);*/
-    /*ExitIfError(UID_BAD == SchedAdd(wd_scheduler, SendSignal, NULL, 1), "Failed to SchedAdd!\n", -1);*/
+    /*ExitIfError(UID_BAD == SchedAdd(wd_scheduler, SendSignal, NULL, 1),
+                                             "Failed to SchedAdd!\n", -1);*/
     SchedAdd(wd_scheduler, StamScheduler, wd_args_, wd_args_->signal_intervals);
 
     ret_status = SchedRun(wd_scheduler);
@@ -176,22 +188,20 @@ int WDSchedulerManage(wd_args_t *wd_args_)
     return (ILRD_SUCCESS == ret_status ? ILRD_SUCCESS : ILRD_FALSE);
 }
 
-static void SignalCountHandle(int signum) 
-{
-    printf("[%zu]handlerFun_of WatchdogThread\n", (size_t)pthread_self());
 
-    if (signum == SIGUSR1) 
-    {
-        g_fail_counter = 0;
-    }
-}
 
 static int StamScheduler(void *params_)
 {
     wd_args_t *wd_args = (wd_args_t *)params_;
-    printf("BLALALALALALA\n");
-    printWdArgs(wd_args);
-    printf("..\n");
+    if (wd_args->is_user_prog == IS_USER_PROG)
+    {
+        printf("USER APP SENDING SIGNAL (StamScheduler)\n");
+    }
+    else{
+        printf("WD PROCESS SENDING SIGNAL (StamScheduler)\n");
+    }
+    kill(wd_args->signal_pid, SIGUSR1);
+
     return 0;
 }
 
@@ -200,13 +210,12 @@ int BlockAllSignalsHandler(void)
     sigset_t all_signals;
     
     /*Initialize the set to include all possible signals*/
-    if (sigfillset(&all_signals) != 0) 
-     RETURN_IF_ERROR(sigfillset(&all_signals) != 0, "sigprocmask error", ILRD_FALSE);
+     RETURN_IF_ERROR(sigfillset(&all_signals) == 0,
+                                             "sigprocmask error", ILRD_FALSE);
 
     /*Block all signals*/
-    if (sigprocmask(SIG_BLOCK, &all_signals, NULL) != 0) 
-    RETURN_IF_ERROR(sigprocmask(SIG_BLOCK, &all_signals, NULL) != 0,
-                                                    "sigprocmask error", ILRD_FALSE);
+    RETURN_IF_ERROR(sigprocmask(SIG_BLOCK, &all_signals, NULL) == 0,
+                                            "sigprocmask error", ILRD_FALSE);
     
     return 0; /*BlockAll sucsessfully*/
 }
@@ -214,8 +223,7 @@ int BlockAllSignalsHandler(void)
 int BlockSignalHandler(void)
 {
     sigset_t mask_set;
-
-    /*Block all signals*/
+    
     /*Initialize an empty signal mask_set*/
     RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
 
@@ -263,3 +271,41 @@ void printWdArgs(const wd_args_t *args)
         ++i;
     }
 }
+
+static void SignalCountHandle(int signum) 
+{
+    printf("                [%zu]handlerFun_of_process\n", (size_t)pthread_self());
+
+    if (signum == SIGUSR1) 
+    {
+        g_fail_counter = 0;
+    }
+}
+
+int DoNotResuscitate(void)
+{
+	void *status = NULL;
+
+	/*by sending a signal to itself, I can be sure that the created thread will
+	receive it and process it, and the main thread will ignore it*/
+	RETURN_IF_ERROR(-1 != kill(getpid(), SIGUSR2), "kill error", KILL_FAIL);
+	
+	RETURN_IF_ERROR(-1 != sem_unlink(SEM_NAME), "sem_unlink error", 
+															SEMUNLINK_FAIL);
+	
+	ExitIfError(0 == pthread_join(tid, &status), "pthread_join error", 
+																	JOIN_FAIL);
+	
+	return (size_t)status;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     pthread_join(tid, NULL);
 
 	/*End watchdoog*/
-	/*DNR();*/
+	/*DoNotResuscitate();*/
 
 	return (0);
 }

@@ -37,7 +37,6 @@ void printWdArgs(const wd_args_t *args);
 static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_, 
 																char *arr_fc_);
 static void SignalCountHandle(int signum);
-int StamScheduler(void *params);
 static void SIGUSR2Handler(int signo_);
 
 
@@ -57,7 +56,7 @@ enum
 
 int main(int argc_, char *argv_[])
 {
-    int i = 0, max_fail = 0, signal_intervals = 0;
+    int max_fail = 0, signal_intervals = 0;
     int status = 0; 
     struct sigaction handler = {0}; /*Create signal handler for SIGUSR1*/
         
@@ -67,11 +66,11 @@ int main(int argc_, char *argv_[])
 
     /*Block all signals*/
     status = BlockAllSignalsHandler();
-    ExitIfError(0 == status, "SignalMaskHandler error", status);
+    ExitIfError(0 == status, "SignalMaskHandler2 error", ILRD_FALSE);
 
     /* Unblock SIGUSR1 and SIGUSR2 */
-    ExitIfError(0 != UnBlockSignalHandler(),
-                                     "Error: sigaction1 failed", ILRD_FALSE);
+    ExitIfError(0 == UnBlockSignalHandler(),
+                            "Error: UnBlockSignalHandler failed", ILRD_FALSE);
 
 
     handler.sa_handler = &SignalCountHandle;
@@ -151,9 +150,9 @@ int WDSchedulerManage(wd_args_t *wd_args_)
     {
         wd_args_->signal_pid = getppid();
 
-        /*TASK: in case the inner watchdog app is running add a task to the scheduler 
-        is the first to send a signal because the parent is definitely ready 
-        to receive signals*/	
+        /*TASK: in case the inner watchdog app is running add a task to the
+        scheduler is the first to send a signal because the parent is definitely 
+        ready to receive signals*/	
         task_uid = SchedAdd(wd_sched, (int (*)(void *))FirstSignal, wd_args_, 0);
             
         RETURN_IF_ERROR(!UidIsEqual(task_uid, UID_BAD), "SchedAdd fail", 
@@ -181,35 +180,6 @@ int WDSchedulerManage(wd_args_t *wd_args_)
     
     /*	return if scheduler has successfully finished */
     return (ILRD_SUCCESS == status ? ILRD_SUCCESS : ILRD_FALSE);
-}
-
-static int SigSenderAndCountChecker(wd_args_t *args_)
-{
-    return 0;
-}
-
-static int FirstSignal(wd_args_t *args_)
-{
-    return 0;
-}
-
-/*g_fail_counter = 0, g_is_child_ready = 1*/
-static void SIGUSR1Handler(int sig_)
-{
-	assert(sig_ == SIGUSR1);
-
-	g_fail_counter = 0; 
-	g_is_child_ready = 1;		
-}	
-
-/*g_is_not_resucitate = 1*/
-static void SIGUSR2Handler(int sig_)
-{
-    assert(sig_ == SIGUSR2);
-
-	UNUSED(sig_);
-	
-	g_is_not_resucitate = 1;
 }
 
 static int Resucitate(wd_args_t *args_)
@@ -271,19 +241,127 @@ static int Resucitate(wd_args_t *args_)
 	return 1;
 }
 
+static int SigSenderAndCountChecker(wd_args_t *args_)
+{
+	if (g_is_not_resucitate)
+	{
+		return 1;
+	}
+
+	/*check if given counter >= fail_counter*/
+	if (g_fail_counter >= args_->max_fails)
+	{
+		/*call exec or fork/exec function*/
+		Resucitate(args_);
+	}
+	
+	else
+	{
+		if (args_->is_user_prog) 
+		{
+			/*flag wait for first signal from the main*/
+			if (g_is_child_ready) 
+			{
+				if (-1 == kill(args_->signal_pid, SIGUSR1))
+				{
+					if (ESRCH != errno)
+					{
+						perror("kill error");
+						exit(KILL_FAIL);
+					}
+				}
+			}
+		} 
+
+		else 
+		{
+			if (-1 == kill(args_->signal_pid, SIGUSR1))
+			{
+				if (ESRCH != errno)
+				{
+					exit(KILL_FAIL);
+				}
+			}
+		}
+		/*increase value of the global counter*/
+		++g_fail_counter;
+	}
+	
+	/*return 0 for rescheduling*/
+	return 0;
+}
+
+
+static void SignalCountHandle(int signum) 
+{
+    printf("                [%zu]handlerFun_of_process\n", (size_t)pthread_self());
+
+    if (signum == SIGUSR1) 
+    {
+        g_fail_counter = 0;
+    }
+}
+
+static int FirstSignal(wd_args_t *args_)
+{
+	UNUSED(args_);
+    printf("                                        FirstSignal\n");
+	/*send siganl to parent id*/
+	ExitIfError(-1 != kill(args_->signal_pid, SIGUSR1), "kill error", KILL_FAIL);
+	
+	/*return 1 to finish the task and not reschedule it*/
+	return 1;
+}
+
+/*g_fail_counter = 0, g_is_child_ready = 1*/
+static void SIGUSR1Handler(int sig_)
+{
+	assert(sig_ == SIGUSR1);
+
+	g_fail_counter = 0; 
+	g_is_child_ready = 1;		
+}	
+
+/*g_is_not_resucitate = 1*/
+static void SIGUSR2Handler(int sig_)
+{
+    assert(sig_ == SIGUSR2);
+
+	UNUSED(sig_);
+	
+	g_is_not_resucitate = 1;
+}
+
+static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_, 
+																char *arr_fc_)
+{
+	int i = 0;
+
+	sprintf(arr_freq_, "%ld", args_->signal_intervals);
+	sprintf(arr_fc_, "%ld", args_->max_fails);
+	
+	arr_args_[0] = "./main_wd.out";
+	arr_args_[1] = arr_freq_;
+	arr_args_[2] = arr_fc_;
+	
+	while (NULL != args_->argv_list[i])
+	{
+		arr_args_[i + 3] = (char *)args_->argv_list[i];
+        ++i;
+	}
+}
 
 int BlockAllSignalsHandler(void) 
 {
     sigset_t all_signals;
     
     /*Initialize the set to include all possible signals*/
-    if (sigfillset(&all_signals) != 0) 
-     RETURN_IF_ERROR(sigfillset(&all_signals) != 0, "sigprocmask error", ILRD_FALSE);
+    RETURN_IF_ERROR(sigfillset(&all_signals) == 0,
+            "in finction BlockAllSignalsHandler: sigfillset error", ILRD_FALSE);
 
     /*Block all signals*/
-    if (sigprocmask(SIG_BLOCK, &all_signals, NULL) != 0) 
-    RETURN_IF_ERROR(sigprocmask(SIG_BLOCK, &all_signals, NULL) != 0,
-                                                    "sigprocmask error", ILRD_FALSE);
+    RETURN_IF_ERROR(sigprocmask(SIG_BLOCK, &all_signals, NULL) == 0,
+            "in finction BlockAllSignalsHandler:sigprocmask error", ILRD_FALSE);
     
     return 0; /*BlockAll sucsessfully*/
 }
@@ -320,42 +398,7 @@ void printWdArgs(const wd_args_t *args)
     }
 }
 
-static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_, 
-																char *arr_fc_)
-{
-	int i = 0;
 
-	sprintf(arr_freq_, "%ld", args_->signal_intervals);
-	sprintf(arr_fc_, "%ld", args_->max_fails);
-	
-	arr_args_[0] = "./main_wd.out";
-	arr_args_[1] = arr_freq_;
-	arr_args_[2] = arr_fc_;
-	
-	while (NULL != args_->argv_list[i])
-	{
-		arr_args_[i + 3] = (char *)args_->argv_list[i];
-        ++i;
-	}
-}
-
-static void SignalCountHandle(int signum) 
-{
-    printf("                [%zu]handlerFun_of_process\n", (size_t)pthread_self());
-
-    if (signum == SIGUSR1) 
-    {
-        g_fail_counter = 0;
-    }
-}
-
-int StamScheduler(void *params)
-{
-    UNUSED(params); /*getppid not need to save pid to get it -> kill*/
-
-    printf("..\n");
-    return 0;
-}
 
 
 
