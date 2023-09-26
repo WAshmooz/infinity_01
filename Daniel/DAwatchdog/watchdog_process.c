@@ -1,4 +1,4 @@
-/***************************************************************************
+/*******************************************************************************
 ****Author: 			Daniel Shabso
 ****Reviewer: 			
 ****Creation: 			03.09.23 
@@ -6,7 +6,7 @@
 ****Version:			1
 ****Description:		Watchdog (simple pase)
 
-**************************	Header & Macro	********************************/
+**************************	Header & Macro	***********************************/
 #define _POSIX_C_SOURCE /*include expand library of signal.h (sigation)*/
 #include <assert.h>
 #include <stdio.h> /*fprintf, scanf*/
@@ -26,26 +26,40 @@
 #include "aux_funcs.h"
 
 #define SEM_NAME "/wd_semaphore"
-
+int WDSchedulerManage(wd_args_t *wd_args_);
+static int SigSenderAndCountChecker(wd_args_t *args_);
+static int FirstSignal(wd_args_t *args_);
+static void SIGUSR1Handler(int sig_);
+static int Resucitate(wd_args_t *args_);
 int BlockAllSignalsHandler(void); /*Block all signals*/
 int UnBlockSignalHandler(void); /*UnBlock SIGUSR1, SIGUSR2*/
+void printWdArgs(const wd_args_t *args); 
+static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_, 
+																char *arr_fc_);
 static void SignalCountHandle(int signum);
-int WDSchedulerManage(wd_args_t *wd_args_);
 int StamScheduler(void *params);
-void printWdArgs(const wd_args_t *args);
+static void SIGUSR2Handler(int signo_);
+
 
 /******************************Global variables********************************/
 
 volatile int g_fail_counter;
 volatile int g_is_not_resucitate;
 volatile int g_is_child_ready;
+
+enum 
+{
+	ARR_ARGV_SIZE = 20,
+	ARR_FNAME_SIZE = 100,
+	ARR_NUM_SIZE = 32
+};
 /**********************************Functions***********************************/
 
 int main(int argc_, char *argv_[])
 {
     int i = 0, max_fail = 0, signal_intervals = 0;
     int status = 0; 
-    struct sigaction handler = {0};	    /*Create signal handler for SIGUSR1*/
+    struct sigaction handler = {0}; /*Create signal handler for SIGUSR1*/
         
 
     wd_args_t wd_args; /*Create a wd_args_t structure*/
@@ -56,7 +70,8 @@ int main(int argc_, char *argv_[])
     ExitIfError(0 == status, "SignalMaskHandler error", status);
 
     /* Unblock SIGUSR1 and SIGUSR2 */
-    ExitIfError(0 != UnBlockSignalHandler(), "Error: sigaction1 failed", ILRD_FALSE);
+    ExitIfError(0 != UnBlockSignalHandler(),
+                                     "Error: sigaction1 failed", ILRD_FALSE);
 
 
     handler.sa_handler = &SignalCountHandle;
@@ -79,37 +94,22 @@ int main(int argc_, char *argv_[])
     wd_args.sem = sem_open(SEM_NAME, O_CREAT, 0666, 0);
     /*if (wd_args.sem == SEM_FAILED) 
 	{
-		RETURN_IF_ERROR(-1 != kill(getppid(), SIGKILL), "kill error", KILL_FAIL);
+		RETURN_IF_ERROR(-1 != kill(getppid(), SIGKILL),
+                                                     "kill error", KILL_FAIL);
 
 		return SEMOPEN_FAIL;
 	}*/
 
     /*Sem post + Sem close*/
-	RETURN_IF_ERROR(-1 != sem_post(wd_args.sem), "sem_post error", SEMPOST_FAIL);
-	RETURN_IF_ERROR(-1 != sem_close(wd_args.sem), "sem_close error", SEMCLOSE_FAIL);
+	RETURN_IF_ERROR(-1 != sem_post(wd_args.sem),
+                                             "sem_post error", SEMPOST_FAIL);
+	RETURN_IF_ERROR(-1 != sem_close(wd_args.sem),
+                                             "sem_close error", SEMCLOSE_FAIL);
 
     WDSchedulerManage(&wd_args);
 
     printf("                                STARTING watchdog_process1 end\n");
 
-    return 0;
-}
-
-static void SignalCountHandle(int signum) 
-{
-    printf("                [%zu]handlerFun_of_process\n", (size_t)pthread_self());
-
-    if (signum == SIGUSR1) 
-    {
-        g_count = 0;
-    }
-}
-
-int StamScheduler(void *params)
-{
-    UNUSED(params); /*getppid not need to save pid to get it -> kill*/
-
-    printf("..\n");
     return 0;
 }
 
@@ -137,7 +137,8 @@ int WDSchedulerManage(wd_args_t *wd_args_)
                                                                 SIGADD_FAIL);
     /*Create scheduler*/
     wd_sched = SchedCreate();
-    ExitIfError(NULL != wd_sched, "Failed to create a WatchDog Scheduler!\n", CREATE_FAIL);
+    ExitIfError(NULL != wd_sched,
+                     "Failed to create a WatchDog Scheduler!\n", CREATE_FAIL);
 
     if (wd_args_->is_user_prog)
     {
@@ -161,7 +162,8 @@ int WDSchedulerManage(wd_args_t *wd_args_)
 
 
     /*TASK: check if global counter = max fail*/
-    task_uid = SchedAdd(wd_sched, (int (*)(void *))SigSenderAndCountChecker, wd_args_, wd_args_->signal_intervals);
+    task_uid = SchedAdd(wd_sched, (int (*)(void *))SigSenderAndCountChecker,
+                                         wd_args_, wd_args_->signal_intervals);
 	RETURN_IF_ERROR(!UidIsEqual(task_uid, UID_BAD), "SchedAdd fail", ADD_FAIL);
 
     status = SchedRun(wd_sched);
@@ -181,16 +183,26 @@ int WDSchedulerManage(wd_args_t *wd_args_)
     return (ILRD_SUCCESS == status ? ILRD_SUCCESS : ILRD_FALSE);
 }
 
+static int SigSenderAndCountChecker(wd_args_t *args_)
+{
+    return 0;
+}
 
+static int FirstSignal(wd_args_t *args_)
+{
+    return 0;
+}
+
+/*g_fail_counter = 0, g_is_child_ready = 1*/
 static void SIGUSR1Handler(int sig_)
 {
 	assert(sig_ == SIGUSR1);
 
-	g_fail_counter = 0;
+	g_fail_counter = 0; 
 	g_is_child_ready = 1;		
 }	
 
-
+/*g_is_not_resucitate = 1*/
 static void SIGUSR2Handler(int sig_)
 {
     assert(sig_ == SIGUSR2);
@@ -199,6 +211,66 @@ static void SIGUSR2Handler(int sig_)
 	
 	g_is_not_resucitate = 1;
 }
+
+static int Resucitate(wd_args_t *args_)
+{
+	pid_t child_pid = 0;
+	
+	if (args_->is_user_prog)
+	{
+		int status = 0;
+
+		char *arr_args[ARR_ARGV_SIZE] = {NULL};
+		char arr_freq[ARR_NUM_SIZE] = {0};
+		char arr_f_c[ARR_NUM_SIZE] = {0};
+
+		InitArgs(args_, arr_args, arr_freq, arr_f_c);
+			
+		if (kill(args_->signal_pid, 0) == 0) 
+		{
+			kill(args_->signal_pid, SIGKILL);
+			
+			/*waiting for the process to clean up*/
+			waitpid(args_->signal_pid, &status, 1);
+        }
+        
+		child_pid = fork();
+		
+		ExitIfError(-1 != child_pid, "fork error", FORK_FAIL);
+	
+		if (!child_pid) 
+		{
+			execvp(arr_args[0], arr_args);
+
+			perror("execvp error");  
+			exit(EXECUTION_FAIL);
+		}
+		
+		else
+		{
+			/*DEBUG_ONLY(LogI("fork pid %d", child_pid));*/
+			
+			g_fail_counter = 0;
+			g_is_child_ready = 0;
+			
+			args_->signal_pid = child_pid;
+		}
+    }
+
+	else 
+	{
+		kill(args_->signal_pid, SIGKILL);
+
+		execvp(args_->argv_list[0], (char **)args_->argv_list);
+
+		/*LogE("execvp error");  */
+		exit(EXECUTION_FAIL);
+	}
+	
+	/*return 1 to finish the task and not reschedule it*/
+	return 1;
+}
+
 
 int BlockAllSignalsHandler(void) 
 {
@@ -247,4 +319,47 @@ void printWdArgs(const wd_args_t *args)
         ++i;
     }
 }
+
+static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_, 
+																char *arr_fc_)
+{
+	int i = 0;
+
+	sprintf(arr_freq_, "%ld", args_->signal_intervals);
+	sprintf(arr_fc_, "%ld", args_->max_fails);
+	
+	arr_args_[0] = "./main_wd.out";
+	arr_args_[1] = arr_freq_;
+	arr_args_[2] = arr_fc_;
+	
+	while (NULL != args_->argv_list[i])
+	{
+		arr_args_[i + 3] = (char *)args_->argv_list[i];
+        ++i;
+	}
+}
+
+static void SignalCountHandle(int signum) 
+{
+    printf("                [%zu]handlerFun_of_process\n", (size_t)pthread_self());
+
+    if (signum == SIGUSR1) 
+    {
+        g_fail_counter = 0;
+    }
+}
+
+int StamScheduler(void *params)
+{
+    UNUSED(params); /*getppid not need to save pid to get it -> kill*/
+
+    printf("..\n");
+    return 0;
+}
+
+
+
+
+
+
 
