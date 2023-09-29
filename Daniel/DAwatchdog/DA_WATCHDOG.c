@@ -31,8 +31,8 @@
 /****************************Function prototypes*******************************/
 int *WatchdogThread(wd_args_t *wd_args_);
 int BlockAllSignalsHandler(void); /*Block all signals*/
-int BlockSignalHandler(void);   /*Block SIGUSR1, SIGUSR2*/
-int UnBlockSignalHandler(void); /*UnBlock SIGUSR1, SIGUSR2*/
+int BlockSIGUSR12Handler(void);   /*Block SIGUSR1, SIGUSR2*/
+int UnBlockSIGUSR12Handler(void); /*UnBlock SIGUSR1, SIGUSR2*/
 static void SignalCountHandle(int signum_);
 int WDSchedulerManage(wd_args_t *wd_args_);
 static int StamScheduler(void *params);
@@ -72,8 +72,9 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
     int status = 0;
     wd_args_t *wd_args = NULL;
 
-    status = BlockSignalHandler();
-    RETURN_IF_ERROR(0 == status, "BlockSignalHandler error", status);
+    /*Block SIGUSR1/2 from the user app*/
+    status = BlockSIGUSR12Handler();
+    RETURN_IF_ERROR(0 == status, "BlockSIGUSR12Handler error", status);
 
     /*Alocate for struct*/
     wd_args = (wd_args_t *)malloc(sizeof(wd_args_t));
@@ -94,14 +95,16 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
     RETURN_IF_ERROR(NULL != wd_args->argv_list,
                                          "Eror: allocate arg_list", ILRD_FALSE);
 
-    /*Set wd_args*/
+    /*Set wd_args new added arguments at first 3 sells*/
     wd_args->argv_list[0] = "./watchdog.out";
     wd_args->argv_list[1] = buf_max_fails;
     wd_args->argv_list[2] = buf_signal_intervals;
 
+    /*jump 3 sells and copy all args of user app to arg_list*/
     memcpy(wd_args->argv_list + 3, argv_, argc_ * sizeof(char *));
 
-    wd_args->max_fails = max_fails;
+    /*set the rest of the struct*/
+    wd_args->max_fails = max_fails; 
     wd_args->signal_intervals = signal_intervals;
     wd_args->is_user_prog = IS_USER_PROG;
     wd_args->signal_pid = getppid();
@@ -118,7 +121,7 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
     RETURN_IF_ERROR(0 == sem_close(wd_args->sem),
                                              "sem_close error", ILRD_FALSE);
 
-    printf("MakeMeImurtal after wait\n");
+printf("MakeMeImurtal after wait\n");
 
 
     return 0;
@@ -134,26 +137,26 @@ int *WatchdogThread(wd_args_t *wd_args_)
     int ststus_sigaction = 0; /* SUCCESS */
     struct sigaction handler = {0};	
 
-    /*Block all signals and Unblock SIGUSR1 and SIGUSR2 */
+    /*Block all signals from WD_Thread and Unblock SIGUSR1 and SIGUSR2 */
     ExitIfError(0 == BlockAllSignalsHandler(),
                         "Error: BlockAllSignalsHandler failed", ILRD_FALSE);
-    ExitIfError(0 == UnBlockSignalHandler(),
-                        "Error: UnBlockSignalHandler failed", ILRD_FALSE);
+    ExitIfError(0 == UnBlockSIGUSR12Handler(),
+                        "Error: UnBlockSIGUSR12Handler failed", ILRD_FALSE);
 
-    /* Create signal handler for SIGUSR1 */
+    /* Create signal handler for SIGUSR1 (set counter to 0)*/
     handler.sa_handler = &SignalCountHandle;
     ststus_sigaction = sigaction(SIGUSR1, &handler, NULL);
     ExitIfError(ILRD_SUCCESS == ststus_sigaction,
                                      "Error: sigaction1 failed", ILRD_FALSE); 
 
-    printf("Fork START\n");
-    printWdArgs(wd_args_);
+printf("Fork START\n");
+printWdArgs(wd_args_);
 
     pid = fork(); 
     if (0 == pid)
     {
         execvp(wd_args_->argv_list[0], wd_args_->argv_list);
-        printf("WE ARE NOT SUPPOSED TO GET HERE\n");
+printf("WE ARE NOT SUPPOSED TO GET HERE\n");
         assert(1 == 0);
     }
     
@@ -288,7 +291,7 @@ int BlockAllSignalsHandler(void)
     return 0; /*BlockAll sucsessfully*/
 }
 
-int BlockSignalHandler(void)
+int BlockSIGUSR12Handler(void)
 {
     sigset_t mask_set;
     
@@ -307,7 +310,7 @@ int BlockSignalHandler(void)
 
 }
 
-int UnBlockSignalHandler(void)
+int UnBlockSIGUSR12Handler(void)
 {
     sigset_t mask_set;
 
@@ -345,15 +348,11 @@ static int Resucitate(wd_args_t *args_)
 {
 	pid_t child_pid = 0;
 	
+printf("CALL TO Resucitate [is_user = %d]]\n", args_->is_user_prog);
+
 	if (args_->is_user_prog)
 	{
 		int status = 0;
-
-		char *arr_args[ARR_ARGV_SIZE] = {NULL};
-		char arr_freq[ARR_NUM_SIZE] = {0};
-		char arr_f_c[ARR_NUM_SIZE] = {0};
-
-		InitArgs(args_, arr_args, arr_freq, arr_f_c);
 			
 		if (kill(args_->signal_pid, 0) == 0) 
 		{
@@ -366,10 +365,11 @@ static int Resucitate(wd_args_t *args_)
 		child_pid = fork();
 		
 		ExitIfError(-1 != child_pid, "fork error", FORK_FAIL);
-	
+
+		/*if its the parent it suold do exec() also*/
 		if (!child_pid) 
 		{
-			execvp(arr_args[0], arr_args);
+			execvp(args_->argv_list[0], args_->argv_list);
 
 			perror("execvp error");  
 			exit(EXECUTION_FAIL);

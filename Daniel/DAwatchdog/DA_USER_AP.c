@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 	/*Start watchdoog*/
 	MakeMeImurtal(argc, argv, signal_intervals, max_fails);
 	
+	
 	while(i < 10)
 	{
 		++i;

@@ -186,15 +186,11 @@ static int Resucitate(wd_args_t *args_)
 {
 	pid_t child_pid = 0;
 	
+printf("CALL TO Resucitate [is_user = %d]]\n", args_->is_user_prog);
+
 	if (args_->is_user_prog)
 	{
 		int status = 0;
-
-		char *arr_args[ARR_ARGV_SIZE] = {NULL};
-		char arr_freq[ARR_NUM_SIZE] = {0};
-		char arr_f_c[ARR_NUM_SIZE] = {0};
-
-		InitArgs(args_, arr_args, arr_freq, arr_f_c);
 			
 		if (kill(args_->signal_pid, 0) == 0) 
 		{
@@ -207,15 +203,16 @@ static int Resucitate(wd_args_t *args_)
 		child_pid = fork();
 		
 		ExitIfError(-1 != child_pid, "fork error", FORK_FAIL);
-	
+
+		/*if its the parent it suold do exec()*/
 		if (!child_pid) 
 		{
-			execvp(arr_args[0], arr_args);
+			execvp(args_->argv_list[0], args_->argv_list);
 
 			perror("execvp error");  
 			exit(EXECUTION_FAIL);
 		}
-		
+
 		else
 		{
 			/*DEBUG_ONLY(LogI("fork pid %d", child_pid));*/
@@ -229,9 +226,12 @@ static int Resucitate(wd_args_t *args_)
 
 	else 
 	{
+printf("3333333333333333333333\n");
 		kill(args_->signal_pid, SIGKILL);
+printf("55555555555555555555555\n");
 
-		execvp(args_->argv_list[0], (char **)args_->argv_list);
+		execvp(args_->argv_list[0], args_->argv_list);
+printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
 
 		/*LogE("execvp error");  */
 		exit(EXECUTION_FAIL);
