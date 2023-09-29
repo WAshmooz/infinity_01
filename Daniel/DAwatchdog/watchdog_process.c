@@ -34,8 +34,8 @@ static int Resucitate(wd_args_t *args_);
 int BlockAllSignalsHandler(void); /*Block all signals*/
 int UnBlockSignalHandler(void); /*UnBlock SIGUSR1, SIGUSR2*/
 void printWdArgs(const wd_args_t *args); 
-static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_, 
-																char *arr_fc_);
+static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
+														char *arr_max_fail_);
 static void SignalCountHandle(int signum);
 static void SIGUSR2Handler(int signo_);
 
@@ -317,6 +317,7 @@ static int FirstSignal(wd_args_t *args_)
 static void SIGUSR1Handler(int sig_)
 {
 	assert(sig_ == SIGUSR1);
+    printf("%60d signal sending SIGUSR1 from: THREAD [pid = %d]\n", getpid());
 
 	g_fail_counter = 0; 
 	g_is_child_ready = 1;		
@@ -332,17 +333,17 @@ static void SIGUSR2Handler(int sig_)
 	g_is_not_resucitate = 1;
 }
 
-static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_, 
-																char *arr_fc_)
+static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
+															char *arr_max_fail_)
 {
 	int i = 0;
 
-	sprintf(arr_freq_, "%ld", args_->signal_intervals);
-	sprintf(arr_fc_, "%ld", args_->max_fails);
+	sprintf(arr_interval_, "%ld", args_->signal_intervals);
+	sprintf(arr_max_fail_, "%ld", args_->max_fails);
 	
 	arr_args_[0] = "./main_wd.out";
-	arr_args_[1] = arr_freq_;
-	arr_args_[2] = arr_fc_;
+	arr_args_[1] = arr_interval_;
+	arr_args_[2] = arr_max_fail_;
 	
 	while (NULL != args_->argv_list[i])
 	{
@@ -350,6 +351,7 @@ static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_freq_,
         ++i;
 	}
 }
+
 
 int BlockAllSignalsHandler(void) 
 {

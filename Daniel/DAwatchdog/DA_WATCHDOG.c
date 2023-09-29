@@ -38,6 +38,15 @@ int WDSchedulerManage(wd_args_t *wd_args_);
 static int StamScheduler(void *params);
 void printWdArgs(const wd_args_t *args);
 int DoNotResuscitate(void);
+static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
+														char *arr_max_fail_);
+
+
+static int SigSenderAndCountChecker(wd_args_t *args_);
+static int FirstSignal(wd_args_t *args_);
+static void SIGUSR1Handler(int sig_);
+static int Resucitate(wd_args_t *args_);
+static void SIGUSR2Handler(int signo_);
 /******************************Global variables********************************/
 volatile int g_fail_counter;
 volatile int g_is_not_resucitate;
@@ -48,6 +57,12 @@ pid_t wd_process_id;
 char buf_max_fails[10]; 
 char buf_signal_intervals[10];
 
+enum 
+{
+	ARR_ARGV_SIZE = 20,
+	ARR_FNAME_SIZE = 100,
+	ARR_NUM_SIZE = 32
+};
 /**********************************Functions***********************************/
 
 /*User function to initialize the watchdog*/
@@ -109,12 +124,6 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
     return 0;
 }
 
-int DNR(void)
-{
-    printf("\n  DNR  \n");
-    return (0);
-}
-
 int *WatchdogThread(wd_args_t *wd_args_)
 {	
     pid_t pid;
@@ -165,30 +174,89 @@ int *WatchdogThread(wd_args_t *wd_args_)
 
 int WDSchedulerManage(wd_args_t *wd_args_)
 {
-    int ret_status = 0;
-    scheduler_t *wd_scheduler = NULL;
+    int status = 0;
+    Uid_t task_uid;
+    scheduler_t *wd_sched = NULL;
+    struct sigaction actions[2] = {0};
 
-    printf("\n\nWDSchedulerManage START Thread\n\n");
+    printf("\n\nWDSchedulerManage START1 Process\n\n");
 
+    assert(wd_args_);
+
+    /*Set sigaction */
+    actions[0].sa_handler  = SIGUSR1Handler;
+    actions[1].sa_handler = SIGUSR2Handler;
+
+    /*call sigaction function to determine SIGUSR1 and SIGUSR2 handler*/
+    RETURN_IF_ERROR(-1 != sigaction(SIGUSR1, &actions[0], NULL), "sigaction", 
+                                                                SIGADD_FAIL);
+
+    RETURN_IF_ERROR(-1 != sigaction(SIGUSR2, &actions[1], NULL), "sigaction", 
+                                                                SIGADD_FAIL);
     /*Create scheduler*/
-    wd_scheduler = SchedCreate();
-    ExitIfError(NULL != wd_scheduler,
-                             "Failed to create a WatchDog Scheduler!\n", -1);
+    wd_sched = SchedCreate();
+    ExitIfError(NULL != wd_sched,
+                     "Failed to create a WatchDog Scheduler!\n", CREATE_FAIL);
 
-    /*SchedAdd(wd_scheduler, SendSignal, NULL, 1);*/
-    /*ExitIfError(UID_BAD == SchedAdd(wd_scheduler, SendSignal, NULL, 1),
-                                             "Failed to SchedAdd!\n", -1);*/
-    SchedAdd(wd_scheduler, StamScheduler, wd_args_, wd_args_->signal_intervals);
+    if (wd_args_->is_user_prog)
+    {
+        /*TASK: Resucitate if its user process*/
+        task_uid = SchedAdd(wd_sched, (int (*)(void *))Resucitate, wd_args_, 0);
+        RETURN_IF_ERROR(!UidIsEqual(task_uid, UID_BAD), "SchedAdd fail", 
+                                                                    ADD_FAIL);
+    }
+    else
+    {
+        wd_args_->signal_pid = getppid();
 
-    ret_status = SchedRun(wd_scheduler);
+        /*TASK: in case the inner watchdog app is running add a task to the
+        scheduler is the first to send a signal because the parent is definitely 
+        ready to receive signals*/	
+        task_uid = SchedAdd(wd_sched, (int (*)(void *))FirstSignal, wd_args_, 0);
+            
+        RETURN_IF_ERROR(!UidIsEqual(task_uid, UID_BAD), "SchedAdd fail", 
+                                                                    ADD_FAIL);
+    }
 
-    SchedDestroy(wd_scheduler);
 
+    /*TASK: check if global counter = max fail*/
+    task_uid = SchedAdd(wd_sched, (int (*)(void *))SigSenderAndCountChecker,
+                                         wd_args_, wd_args_->signal_intervals);
+	RETURN_IF_ERROR(!UidIsEqual(task_uid, UID_BAD), "SchedAdd fail", ADD_FAIL);
+
+    status = SchedRun(wd_sched);
+	RETURN_IF_ERROR(1 == status, "SchedRun fail", ADD_FAIL);
+
+    SchedDestroy(wd_sched);
+
+	if (wd_args_->is_user_prog)
+	{
+		while( -1 == kill(wd_args_->signal_pid, SIGUSR2))
+        {
+            kill(wd_args_->signal_pid, SIGUSR2);
+        }
+	}
+    
     /*	return if scheduler has successfully finished */
-    return (ILRD_SUCCESS == ret_status ? ILRD_SUCCESS : ILRD_FALSE);
+    return (ILRD_SUCCESS == status ? ILRD_SUCCESS : ILRD_FALSE);
 }
 
+int DoNotResuscitate(void)
+{
+	void *status = NULL;
 
+	/*by sending a signal to itself, I can be sure that the created thread will
+	receive it and process it, and the main thread will ignore it*/
+	RETURN_IF_ERROR(-1 != kill(getpid(), SIGUSR2), "kill error", KILL_FAIL);
+	
+	RETURN_IF_ERROR(-1 != sem_unlink(SEM_NAME), "sem_unlink error", 
+															SEMUNLINK_FAIL);
+	
+	ExitIfError(0 == pthread_join(tid, &status), "pthread_join error", 
+																	JOIN_FAIL);
+	
+	return (size_t)status;
+}
 
 static int StamScheduler(void *params_)
 {
@@ -272,6 +340,117 @@ void printWdArgs(const wd_args_t *args)
     }
 }
 
+
+static int Resucitate(wd_args_t *args_)
+{
+	pid_t child_pid = 0;
+	
+	if (args_->is_user_prog)
+	{
+		int status = 0;
+
+		char *arr_args[ARR_ARGV_SIZE] = {NULL};
+		char arr_freq[ARR_NUM_SIZE] = {0};
+		char arr_f_c[ARR_NUM_SIZE] = {0};
+
+		InitArgs(args_, arr_args, arr_freq, arr_f_c);
+			
+		if (kill(args_->signal_pid, 0) == 0) 
+		{
+			kill(args_->signal_pid, SIGKILL);
+			
+			/*waiting for the process to clean up*/
+			waitpid(args_->signal_pid, &status, 1);
+        }
+        
+		child_pid = fork();
+		
+		ExitIfError(-1 != child_pid, "fork error", FORK_FAIL);
+	
+		if (!child_pid) 
+		{
+			execvp(arr_args[0], arr_args);
+
+			perror("execvp error");  
+			exit(EXECUTION_FAIL);
+		}
+		
+		else
+		{
+			/*DEBUG_ONLY(LogI("fork pid %d", child_pid));*/
+			
+			g_fail_counter = 0;
+			g_is_child_ready = 0;
+			
+			args_->signal_pid = child_pid;
+		}
+    }
+
+	else 
+	{
+		kill(args_->signal_pid, SIGKILL);
+
+		execvp(args_->argv_list[0], (char **)args_->argv_list);
+
+		/*LogE("execvp error");  */
+		exit(EXECUTION_FAIL);
+	}
+	
+	/*return 1 to finish the task and not reschedule it*/
+	return 1;
+}
+
+static int SigSenderAndCountChecker(wd_args_t *args_)
+{
+	if (g_is_not_resucitate)
+	{
+		return 1;
+	}
+
+	/*check if given counter >= fail_counter*/
+	if (g_fail_counter >= args_->max_fails)
+	{
+		/*call exec or fork/exec function*/
+		Resucitate(args_);
+	}
+	
+	else
+	{
+		if (args_->is_user_prog) 
+		{
+			/*flag wait for first signal from the main*/
+			if (g_is_child_ready) 
+			{
+				if (-1 == kill(args_->signal_pid, SIGUSR1))
+				{
+					if (ESRCH != errno)
+					{
+						perror("kill error");
+						exit(KILL_FAIL);
+					}
+				}
+			}
+		} 
+
+		else 
+		{
+			if (-1 == kill(args_->signal_pid, SIGUSR1))
+			{
+				if (ESRCH != errno)
+				{
+					exit(KILL_FAIL);
+				}
+			}
+		}
+		/*increase value of the global counter*/
+		++g_fail_counter;
+	}
+	
+	/*return 0 for rescheduling*/
+	return 0;
+}
+
+
 static void SignalCountHandle(int signum) 
 {
     printf("                [%zu]handlerFun_of_process\n", (size_t)pthread_self());
@@ -282,24 +461,54 @@ static void SignalCountHandle(int signum)
     }
 }
 
-int DoNotResuscitate(void)
+static int FirstSignal(wd_args_t *args_)
 {
-	void *status = NULL;
-
-	/*by sending a signal to itself, I can be sure that the created thread will
-	receive it and process it, and the main thread will ignore it*/
-	RETURN_IF_ERROR(-1 != kill(getpid(), SIGUSR2), "kill error", KILL_FAIL);
+	UNUSED(args_);
+    printf("                                        FirstSignal\n");
+	/*send siganl to parent id*/
+	ExitIfError(-1 != kill(args_->signal_pid, SIGUSR1), "kill error", KILL_FAIL);
 	
-	RETURN_IF_ERROR(-1 != sem_unlink(SEM_NAME), "sem_unlink error", 
-															SEMUNLINK_FAIL);
-	
-	ExitIfError(0 == pthread_join(tid, &status), "pthread_join error", 
-																	JOIN_FAIL);
-	
-	return (size_t)status;
+	/*return 1 to finish the task and not reschedule it*/
+	return 1;
 }
 
+/*g_fail_counter = 0, g_is_child_ready = 1*/
+static void SIGUSR1Handler(int sig_)
+{
+	assert(sig_ == SIGUSR1);
+    printf("%60d signal sending SIGUSR1 from: THREAD [pid = %d]\n", getpid());
+	g_fail_counter = 0; 
+	g_is_child_ready = 1;		
+}	
 
+/*g_is_not_resucitate = 1*/
+static void SIGUSR2Handler(int sig_)
+{
+    assert(sig_ == SIGUSR2);
+
+	UNUSED(sig_);
+	
+	g_is_not_resucitate = 1;
+}
+
+static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
+															char *arr_max_fail_)
+{
+	int i = 0;
+
+	sprintf(arr_interval_, "%ld", args_->signal_intervals);
+	sprintf(arr_max_fail_, "%ld", args_->max_fails);
+	
+	arr_args_[0] = "./main_wd.out";
+	arr_args_[1] = arr_interval_;
+	arr_args_[2] = arr_max_fail_;
+	
+	while (NULL != args_->argv_list[i])
+	{
+		arr_args_[i + 3] = (char *)args_->argv_list[i];
+        ++i;
+	}
+}
 
 
 
