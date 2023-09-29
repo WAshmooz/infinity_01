@@ -38,9 +38,6 @@ int WDSchedulerManage(wd_args_t *wd_args_);
 static int StamScheduler(void *params);
 void printWdArgs(const wd_args_t *args);
 int DoNotResuscitate(void);
-static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
-														char *arr_max_fail_);
-
 
 static int SigSenderAndCountChecker(wd_args_t *args_);
 static int FirstSignal(wd_args_t *args_);
@@ -491,24 +488,7 @@ static void SIGUSR2Handler(int sig_)
 	g_is_not_resucitate = 1;
 }
 
-static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
-															char *arr_max_fail_)
-{
-	int i = 0;
 
-	sprintf(arr_interval_, "%ld", args_->signal_intervals);
-	sprintf(arr_max_fail_, "%ld", args_->max_fails);
-	
-	arr_args_[0] = "./main_wd.out";
-	arr_args_[1] = arr_interval_;
-	arr_args_[2] = arr_max_fail_;
-	
-	while (NULL != args_->argv_list[i])
-	{
-		arr_args_[i + 3] = (char *)args_->argv_list[i];
-        ++i;
-	}
-}
 
 
 

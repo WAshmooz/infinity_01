@@ -34,8 +34,6 @@ static int Resucitate(wd_args_t *args_);
 int BlockAllSignalsHandler(void); /*Block all signals*/
 int UnBlockSignalHandler(void); /*UnBlock SIGUSR1, SIGUSR2*/
 void printWdArgs(const wd_args_t *args); 
-static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
-														char *arr_max_fail_);
 static void SignalCountHandle(int signum);
 static void SIGUSR2Handler(int signo_);
 
@@ -229,7 +227,9 @@ printf("CALL TO Resucitate [is_user = %d]]\n", args_->is_user_prog);
 printf("3333333333333333333333\n");
 		kill(args_->signal_pid, SIGKILL);
 printf("55555555555555555555555\n");
-
+/*printWdArgs(args_);*/
+		args_->argv_list[0] = args_->argv_list[3];
+		args_->argv_list[1] = NULL;
 		execvp(args_->argv_list[0], args_->argv_list);
 printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
 
@@ -332,26 +332,6 @@ static void SIGUSR2Handler(int sig_)
 	
 	g_is_not_resucitate = 1;
 }
-
-static void InitArgs(wd_args_t *args_, char **arr_args_, char *arr_interval_, 
-															char *arr_max_fail_)
-{
-	int i = 0;
-
-	sprintf(arr_interval_, "%ld", args_->signal_intervals);
-	sprintf(arr_max_fail_, "%ld", args_->max_fails);
-	
-	arr_args_[0] = "./main_wd.out";
-	arr_args_[1] = arr_interval_;
-	arr_args_[2] = arr_max_fail_;
-	
-	while (NULL != args_->argv_list[i])
-	{
-		arr_args_[i + 3] = (char *)args_->argv_list[i];
-        ++i;
-	}
-}
-
 
 int BlockAllSignalsHandler(void) 
 {
