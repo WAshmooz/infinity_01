@@ -99,7 +99,7 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
     RETURN_IF_ERROR(0 == sem_close(wd_args->sem),
                                              "sem_close error", ILRD_FALSE);
 
-printf("MakeMeImurtal after wait\n");
+    DEBUG printf("MakeMeImurtal after wait\n");
 
 
     return 0;
@@ -127,14 +127,14 @@ int *WatchdogThread(wd_args_t *wd_args_)
     ExitIfError(ILRD_SUCCESS == ststus_sigaction,
                                      "Error: sigaction1 failed", ILRD_FALSE); 
 
-printf("Fork START\n");
-printWdArgs(wd_args_);
+    DEBUG printf("Fork START\n");
+    DEBUG printWdArgs(wd_args_);
 
     pid = fork(); 
     if (0 == pid)
     {
         execvp(wd_args_->argv_list[0], wd_args_->argv_list);
-printf("WE ARE NOT SUPPOSED TO GET HERE\n");
+    DEBUG printf("WE ARE NOT SUPPOSED TO GET HERE\n");
         assert(1 == 0);
     }
     

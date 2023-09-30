@@ -22,10 +22,6 @@ int main(int argc, char *argv[])
 	int i = 0;
 	size_t max_fails = 7;
 	size_t signal_intervals = 2;
-
-    printf("                \n[%zu]MainUser\n\n", (size_t)pthread_self());
-
-			/*printf("\n USER APP IS RUNNING|\n");*/
 	
 	/*Start watchdoog*/
 	MakeMeImurtal(argc, argv, signal_intervals, max_fails);
@@ -34,11 +30,12 @@ int main(int argc, char *argv[])
 	while(i < 10)
 	{
 		++i;
-		printf("                \nUSER APP PROGRAM [pid:%d] \n\n", getpid());
+		printf("\nUSER APP PROGRAM [pid:%d] \n\n", getpid());
 		sleep(3);
 	}
 	
 	pthread_join(tid, NULL);
+	
 	/*End watchdoog*/
 	DoNotResuscitate();
 

@@ -23,6 +23,7 @@
 
 #include "scheduler.h"
 #include "aux_funcs.h"
+#include "watchdog.h"
 #include "common.h"	/*wd_args_t, pid_t, assert, 
 						exit, atoi, puts									*/
 /******************************Global variables********************************/
@@ -36,10 +37,11 @@ int main(int argc_, char *argv_[])
     int max_fail = 0, signal_intervals = 0;
     int status = 0; 
     struct sigaction handler = {0}; /*Create signal handler for SIGUSR1*/
-        
 
     wd_args_t wd_args; /*Create a wd_args_t structure*/
-    printf("                                STARTING watchdog_process1\n");
+    DEBUG printf("STARTING watchdog_process1\n");
+
+    UNUSED(argc_);
 
     /*Block all signals*/
     status = BlockAllSignalsHandler();
@@ -64,7 +66,7 @@ int main(int argc_, char *argv_[])
     wd_args.is_user_prog = IS_WD_PROG;
     wd_args.signal_pid = getppid();
 
-    printWdArgs(&wd_args); 
+    DEBUG printWdArgs(&wd_args); 
 
     /*Open sem for wd_thread -> continue execution of user app*/
     wd_args.sem = sem_open(SEM_NAME, O_CREAT, 0666, 0);
@@ -84,7 +86,7 @@ int main(int argc_, char *argv_[])
 
     WDSchedulerManage(&wd_args);
 
-    printf("                                STARTING watchdog_process1 end\n");
+    DEBUG printf("STARTING watchdog_process1 end\n");
 
     return 0;
 }

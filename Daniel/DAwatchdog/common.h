@@ -7,11 +7,15 @@
 #ifndef __WD_COMMON_H__
 #define __WD_COMMON_H__
 
-/*Define _DEBUG to enable debugging code*/
-#define _DEBUG
 #define SEM_NAME "/wd_semaphore"
 
 /******************************Global variables********************************/
+
+#ifdef DEBUG /*DEBUG / NDEBUG*/
+ #define DEBUG if(0) 
+#else
+ #define DEBUG if(1) 
+#endif
 
 enum 
 {
@@ -52,14 +56,6 @@ typedef struct wd_args
 	sem_t *sem; 
 
 } wd_args_t;
-
-
-/*Define DEBUG_ONLY macro*/
-#ifdef _DEBUG
-#define DEBUG_ONLY(expression) expression
-#else
-#define DEBUG_ONLY(expression)
-#endif	/*in the code: DEBUG_ONLY(printf("BLABLA");)*/
 
 
 /******************************************************************************/

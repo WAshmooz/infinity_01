@@ -40,7 +40,7 @@ static volatile int g_is_child_ready;
     scheduler_t *wd_sched = NULL;
     struct sigaction actions[2] = {0};
 
-    printf("\n\nWDSchedulerManage START1 Process\n\n");
+    DEBUG printf("\n\nWDSchedulerManage START1 Process\n\n");
 
     assert(wd_args_);
 
@@ -107,10 +107,10 @@ static volatile int g_is_child_ready;
     wd_args_t *wd_args = (wd_args_t *)params_;
     if (wd_args->is_user_prog == IS_USER_PROG)
     {
-        printf("USER APP SENDING SIGNAL (StamScheduler)\n");
+        DEBUG printf("USER APP SENDING SIGNAL (StamScheduler)\n");
     }
     else{
-        printf("WD PROCESS SENDING SIGNAL (StamScheduler)\n");
+        DEBUG printf("WD PROCESS SENDING SIGNAL (StamScheduler)\n");
     }
     kill(wd_args->signal_pid, SIGUSR1);
 
@@ -174,7 +174,7 @@ static volatile int g_is_child_ready;
 {
 	pid_t child_pid = 0;
 	
-printf("CALL TO Resucitate [is_user = %d]]\n", args_->is_user_prog);
+    DEBUG printf("CALL TO Resucitate [is_user = %d]]\n", args_->is_user_prog);
 
 	if (args_->is_user_prog)
 	{
@@ -214,14 +214,13 @@ printf("CALL TO Resucitate [is_user = %d]]\n", args_->is_user_prog);
 
 	else 
 	{
-printf("3333333333333333333333\n");
 		kill(args_->signal_pid, SIGKILL);
-printf("55555555555555555555555\n");
-/*printWdArgs(args_);*/
+
+        DEBUG printWdArgs(args_);
 		args_->argv_list[0] = args_->argv_list[3];
 		args_->argv_list[1] = NULL;
 		execvp(args_->argv_list[0], args_->argv_list);
-printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
+        DEBUG printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
 
 		/*LogE("execvp error");  */
 		exit(EXECUTION_FAIL);
@@ -284,7 +283,7 @@ printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
 
  void SignalCountHandle(int signum) 
 {
-    printf("                [%zu]handlerFun_of_process\n", (size_t)pthread_self());
+    DEBUG printf("[%zu]handlerFun_of_process\n", (size_t)pthread_self());
 
     if (signum == SIGUSR1) 
     {
@@ -295,7 +294,7 @@ printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
  int FirstSignal(wd_args_t *args_)
 {
 	UNUSED(args_);
-    printf("                                        FirstSignal\n");
+    DEBUG printf("FirstSignal\n");
 	/*send siganl to parent id*/
 	ExitIfError(-1 != kill(args_->signal_pid, SIGUSR1), "kill error", KILL_FAIL);
 	
@@ -307,7 +306,7 @@ printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
  void SIGUSR1Handler(int sig_)
 {
 	assert(sig_ == SIGUSR1);
-    printf("%60d signal sending SIGUSR1 from: THREAD [pid = %d]\n", getpid());
+    DEBUG printf("%60d signal sending SIGUSR1 from: THREAD [pid = %d]\n", getpid());
 	g_fail_counter = 0; 
 	g_is_child_ready = 1;		
 }	
@@ -326,12 +325,12 @@ printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
  void printWdArgs(const wd_args_t *args) 
 {
     int i = 0;
-    printf("wd_args:\n");
-    printf("  argv_list:\n");
+    DEBUG printf("wd_args:\n");
+    DEBUG printf("  argv_list:\n");
 
     while (NULL != args->argv_list[i]) 
     {
-        printf("    argv_list[%d]: %s\n", i, args->argv_list[i]);
+        DEBUG printf("    argv_list[%d]: %s\n", i, args->argv_list[i]);
         ++i;
     }
 }
