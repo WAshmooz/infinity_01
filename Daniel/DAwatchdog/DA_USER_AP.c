@@ -15,9 +15,7 @@
 #include <semaphore.h>	/*	sem_op	*/
 #include <fcntl.h>/*O_CREAT for sem_op*/
 
-#include "aux_funcs.h"
-
-pthread_t tid = 1; 
+pthread_t tid = 1;
 
 int main(int argc, char *argv[])
 {
@@ -32,7 +30,7 @@ int main(int argc, char *argv[])
 	/*Start watchdoog*/
 	MakeMeImurtal(argc, argv, signal_intervals, max_fails);
 	
-	
+	/*flow of user code*/
 	while(i < 10)
 	{
 		++i;
@@ -40,8 +38,7 @@ int main(int argc, char *argv[])
 		sleep(3);
 	}
 	
-    pthread_join(tid, NULL);
-
+	pthread_join(tid, NULL);
 	/*End watchdoog*/
 	DoNotResuscitate();
 
