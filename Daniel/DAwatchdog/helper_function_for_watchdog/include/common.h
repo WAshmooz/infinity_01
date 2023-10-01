@@ -7,17 +7,15 @@
 #ifndef __WD_COMMON_H__
 #define __WD_COMMON_H__
 
-#include <assert.h>		/* assert*/
-#include <stddef.h>		/* size_t*/
-#include <stdio.h> 		/* printf, perror*/
-#include <stdlib.h>		/* exit, atoi*/
-#include <semaphore.h>	/*	sem_op	*/
-
-#include <sys/types.h> 	/* pid_t*/
-
-#include "aux_funcs.h"	/* RETURN_IF_ERROR, ExitIfError	*/
-
 #define SEM_NAME "/wd_semaphore"
+
+/******************************Global variables********************************/
+
+#ifdef DEBUG /*DEBUG / NDEBUG*/
+ #define DEBUG if(0) 
+#else
+ #define DEBUG if(1) 
+#endif
 
 enum 
 {
@@ -51,29 +49,28 @@ enum
 typedef struct wd_args
 {
 	char **argv_list;
-    int argc;
 	size_t signal_intervals;
 	size_t max_fails;
-	int is_user_prog;
+	int is_user_prog; 
 	pid_t signal_pid;
 	sem_t *sem; 
 
 } wd_args_t;
 
 
-#ifdef _DEBUG
-	#define DEBUG_ONLY(expression) expression
-#else
-	#define DEBUG_ONLY(expression)
-#endif
-
-
-
 /******************************************************************************/
+ int BlockAllSignalsHandler(void); /*Block all signals*/
+ int BlockSIGUSR12Handler(void);   /*Block SIGUSR1, SIGUSR2*/
+ int UnBlockSIGUSR12Handler(void); /*UnBlock SIGUSR1, SIGUSR2*/
+ void SignalCountHandle(int signum_);
+ int WDSchedulerManage(wd_args_t *wd_args_);
+ int StamScheduler(void *params);
+ void printWdArgs(const wd_args_t *args);
 
-int WDHandler(wd_args_t *args_);
-
-int SignalMaskHandler2(void);
-
+ int SigSenderAndCountChecker(wd_args_t *args_);
+ int FirstSignal(wd_args_t *args_);
+ void SIGUSR1Handler(int sig_);
+ int Resucitate(wd_args_t *args_);
+ void SIGUSR2Handler(int signo_);
 
 #endif   /*__WD_COMMON_H__*/

@@ -4,7 +4,7 @@
 ****Creation: 			03.09.23 
 ****Last update:  		11.09.23
 ****Version:			1
-****Description:		Watchdog (simple pase)
+****Description:		User App
 
 **************************	Header & Macro	********************************/
 #include <stdio.h> /*fprintf, scanf*/
@@ -15,13 +15,15 @@
 #include <semaphore.h>	/*	sem_op	*/
 #include <fcntl.h>/*O_CREAT for sem_op*/
 
+#include "watchdog.h"
+
 pthread_t tid = 1;
 
 int main(int argc, char *argv[])
 {
 	int i = 0;
 	size_t max_fails = 7;
-	size_t signal_intervals = 2;
+	size_t signal_intervals = 3;
 	
 	/*Start watchdoog*/
 	MakeMeImurtal(argc, argv, signal_intervals, max_fails);
@@ -35,7 +37,7 @@ int main(int argc, char *argv[])
 	}
 	
 	pthread_join(tid, NULL);
-	
+
 	/*End watchdoog*/
 	DoNotResuscitate();
 

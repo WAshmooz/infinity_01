@@ -31,8 +31,6 @@ static volatile int g_fail_counter;
 static volatile int g_is_not_resucitate;
 static volatile int g_is_child_ready;
 
-pid_t wd_process_id;
-
 /**********************************Functions***********************************/
 
  int WDSchedulerManage(wd_args_t *wd_args_)
@@ -75,7 +73,7 @@ pid_t wd_process_id;
         /*TASK: in case the inner watchdog app is running add a task to the
         scheduler is the first to send a signal because the parent is definitely 
         ready to receive signals*/	
-        task_uid = SchedAdd(wd_sched,(int (*)(void *))FirstSignal, wd_args_, 0);
+        task_uid = SchedAdd(wd_sched, (int (*)(void *))FirstSignal, wd_args_, 0);
             
         RETURN_IF_ERROR(!UidIsEqual(task_uid, UID_BAD), "SchedAdd fail", 
                                                                     ADD_FAIL);

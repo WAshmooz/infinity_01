@@ -20,7 +20,7 @@ IMPORTANT:		Uses SIGUSR1/2 signals.
 				call this function from the main thread.
 				call DNR() before exiting.      	   						
 ******************************************************************************/
-int MakeMeImmortal(int argc_, const char *const *argv_, size_t frequency_, 
+int MakeMeImurtal(int argc_,char **argv_, size_t frequency_, 
 															int fail_counter_);
 
 /******************************************************************************
