@@ -40,7 +40,7 @@ static volatile int g_is_child_ready;
     scheduler_t *wd_sched = NULL;
     struct sigaction actions[2] = {0};
 
-    DEBUG printf("\n\nWDSchedulerManage START1 Process\n\n");
+    DEBUG printf("\nWDSchedulerManage START1 Process\n");
 
     assert(wd_args_);
 
@@ -73,7 +73,7 @@ static volatile int g_is_child_ready;
         /*TASK: in case the inner watchdog app is running add a task to the
         scheduler is the first to send a signal because the parent is definitely 
         ready to receive signals*/	
-        task_uid = SchedAdd(wd_sched, (int (*)(void *))FirstSignal, wd_args_, 0);
+        task_uid = SchedAdd(wd_sched,(int (*)(void *))FirstSignal, wd_args_, 0);
             
         RETURN_IF_ERROR(!UidIsEqual(task_uid, UID_BAD), "SchedAdd fail", 
                                                                     ADD_FAIL);
@@ -96,25 +96,11 @@ static volatile int g_is_child_ready;
         {
             kill(wd_args_->signal_pid, SIGUSR2);
         }
+        DEBUG printf("USER APP killed by \n");
 	}
     
     /*	return if scheduler has successfully finished */
     return (ILRD_SUCCESS == status ? ILRD_SUCCESS : ILRD_FALSE);
-}
-
- int StamScheduler(void *params_)
-{
-    wd_args_t *wd_args = (wd_args_t *)params_;
-    if (wd_args->is_user_prog == IS_USER_PROG)
-    {
-        DEBUG printf("USER APP SENDING SIGNAL (StamScheduler)\n");
-    }
-    else{
-        DEBUG printf("WD PROCESS SENDING SIGNAL (StamScheduler)\n");
-    }
-    kill(wd_args->signal_pid, SIGUSR1);
-
-    return 0;
 }
 
  int BlockAllSignalsHandler(void) 
@@ -135,14 +121,11 @@ static volatile int g_is_child_ready;
  int BlockSIGUSR12Handler(void)
 {
     sigset_t mask_set;
-    
-    /*Initialize an empty signal mask_set*/
-    RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1),
+                                                 "sigaddset error", ILRD_FALSE);
 
-    /*Add SIGUSR1 and SIGUSR2 to the mask set*/
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1), "sigaddset error", ILRD_FALSE);
-
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2), "sigaddset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2),
+                                                 "sigaddset error", ILRD_FALSE);
         
     /*Block mask_set (SIGUSR1, SIGUSR2)*/
     sigprocmask(SIG_BLOCK, &mask_set, NULL);
@@ -157,12 +140,15 @@ static volatile int g_is_child_ready;
 
     /*Block all signals*/
     /*Initialize an empty signal mask_set*/
-    RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigemptyset(&mask_set),
+                                             "sigemptyset error", ILRD_FALSE);
 
     /*Add SIGUSR1 and SIGUSR2 to the mask set*/
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1), "sigaddset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1),
+                                                "sigaddset error", ILRD_FALSE);
 
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2), "sigaddset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2),
+                                                 "sigaddset error", ILRD_FALSE);
         
     /*Block mask_set (SIGUSR1, SIGUSR2)*/
     sigprocmask(SIG_UNBLOCK, &mask_set, NULL);
@@ -251,6 +237,8 @@ static volatile int g_is_child_ready;
 			/*flag wait for first signal from the main*/
 			if (g_is_child_ready) 
 			{
+                DEBUG printf("Resucitate[kill USER] from: [pid = %d]\n",getpid());
+
 				if (-1 == kill(args_->signal_pid, SIGUSR1))
 				{
 					if (ESRCH != errno)
@@ -264,6 +252,8 @@ static volatile int g_is_child_ready;
 
 		else 
 		{
+            DEBUG printf("Resucitate[kill WD] from: [pid = %d]\n",getpid());
+
 			if (-1 == kill(args_->signal_pid, SIGUSR1))
 			{
 				if (ESRCH != errno)
@@ -280,10 +270,10 @@ static volatile int g_is_child_ready;
 	return 0;
 }
 
-
  void SignalCountHandle(int signum) 
 {
-    DEBUG printf("[%zu]handlerFun_of_process\n", (size_t)pthread_self());
+    DEBUG printf("g_fail_counter = %d from: [pid = %d]\n",
+                                                    g_fail_counter, getpid());
 
     if (signum == SIGUSR1) 
     {
@@ -296,7 +286,7 @@ static volatile int g_is_child_ready;
 	UNUSED(args_);
     DEBUG printf("FirstSignal\n");
 	/*send siganl to parent id*/
-	ExitIfError(-1 != kill(args_->signal_pid, SIGUSR1), "kill error", KILL_FAIL);
+	ExitIfError(-1 != kill(args_->signal_pid, SIGUSR1),"kill error", KILL_FAIL);
 	
 	/*return 1 to finish the task and not reschedule it*/
 	return 1;
@@ -306,7 +296,7 @@ static volatile int g_is_child_ready;
  void SIGUSR1Handler(int sig_)
 {
 	assert(sig_ == SIGUSR1);
-    DEBUG printf("%60d signal sending SIGUSR1 from: THREAD [pid = %d]\n", getpid());
+    DEBUG printf("%60d SIGUSR1 from: [pid = %d]\n",getpid());
 	g_fail_counter = 0; 
 	g_is_child_ready = 1;		
 }	
@@ -317,7 +307,7 @@ static volatile int g_is_child_ready;
     assert(sig_ == SIGUSR2);
 
 	UNUSED(sig_);
-	
+	DEBUG printf("%30d SIGUSR2 from: [pid = %d]\n",getpid());
 	g_is_not_resucitate = 1;
 }
 
@@ -325,7 +315,7 @@ static volatile int g_is_child_ready;
  void printWdArgs(const wd_args_t *args) 
 {
     int i = 0;
-    DEBUG printf("wd_args:\n");
+    DEBUG printf("\nwd_args:\n");
     DEBUG printf("  argv_list:\n");
 
     while (NULL != args->argv_list[i]) 
@@ -333,6 +323,7 @@ static volatile int g_is_child_ready;
         DEBUG printf("    argv_list[%d]: %s\n", i, args->argv_list[i]);
         ++i;
     }
+    DEBUG printf("\n");
 }
 
 

@@ -4,8 +4,8 @@ CFLAGS	+= -I ./ -L. -Wl,-rpath=. -ansi -pedantic-errors -Wall -Wextra -lrt -pthr
 LDFLAGS:= -shared
 
 # Source files for USER_UP and WD_PROCESS
-SRCS_USER_UP = user_app.c watchdog.c common.c aux_funcs.c
-SRCS_WHACHDOG_MAIN = watchdog_main.c common.c aux_funcs.c
+SRCS_USER_UP = user_app.c watchdog.c  common.c aux_funcs.c
+SRCS_WHACHDOG_MAIN = watchdog_main.c  common.c aux_funcs.c
 
 # Object files for USER_UP and WD_PROCESS
 OBJS_RUN1 = $(SRCS_USER_UP:.c=.o) 

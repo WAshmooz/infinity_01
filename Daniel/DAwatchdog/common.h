@@ -46,6 +46,12 @@ enum
 	NUM_ARGS = 3
 };
 
+enum 
+{
+	WD_READY = 0,
+	WD_NOT_READY = 1
+};
+
 typedef struct wd_args
 {
 	char **argv_list;
@@ -59,18 +65,17 @@ typedef struct wd_args
 
 
 /******************************************************************************/
- int BlockAllSignalsHandler(void); /*Block all signals*/
- int BlockSIGUSR12Handler(void);   /*Block SIGUSR1, SIGUSR2*/
- int UnBlockSIGUSR12Handler(void); /*UnBlock SIGUSR1, SIGUSR2*/
- void SignalCountHandle(int signum_);
- int WDSchedulerManage(wd_args_t *wd_args_);
- int StamScheduler(void *params);
- void printWdArgs(const wd_args_t *args);
+int BlockAllSignalsHandler(void); /*Block all signals*/
+int BlockSIGUSR12Handler(void);   /*Block SIGUSR1, SIGUSR2*/
+int UnBlockSIGUSR12Handler(void); /*UnBlock SIGUSR1, SIGUSR2*/
+void SignalCountHandle(int signum_);
+int WDSchedulerManage(wd_args_t *wd_args_);
+void printWdArgs(const wd_args_t *args);
 
- int SigSenderAndCountChecker(wd_args_t *args_);
- int FirstSignal(wd_args_t *args_);
- void SIGUSR1Handler(int sig_);
- int Resucitate(wd_args_t *args_);
- void SIGUSR2Handler(int signo_);
+int SigSenderAndCountChecker(wd_args_t *args_);
+int FirstSignal(wd_args_t *args_);
+void SIGUSR1Handler(int sig_);
+int Resucitate(wd_args_t *args_);
+void SIGUSR2Handler(int signo_);
 
 #endif   /*__WD_COMMON_H__*/

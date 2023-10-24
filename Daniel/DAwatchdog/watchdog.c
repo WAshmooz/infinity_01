@@ -62,7 +62,8 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
     snprintf(buf_signal_intervals, sizeof(buf_signal_intervals),
                                                      "%d", signal_intervals); 
 
-    /*Allocate memory for argv_list (+2 for NULL and program_name)*/ 
+    /*Allocate memory for argv_list 
+    (+4 for program_name, signal_intervals, max_fails and NULL)*/ 
     wd_args->argv_list = (char **)(calloc(argc_ + 4, sizeof(char *)));
     RETURN_IF_ERROR(NULL != wd_args->argv_list,
                                          "Eror: allocate arg_list", ILRD_FALSE);
@@ -87,7 +88,6 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
     status = pthread_create(&tid, NULL, (void *(*)(void *))&WatchdogThread,
                                                                      wd_args);
     RETURN_IF_ERROR(0 == status, "Eror: creating thread", ILRD_FALSE); 
-
     
     sem_wait(wd_args->sem);
     RETURN_IF_ERROR(0 == sem_close(wd_args->sem),
@@ -102,11 +102,7 @@ int MakeMeImurtal(int argc_, char *argv_[], size_t signal_intervals,
 int *WatchdogThread(wd_args_t *wd_args_)
 {	
     pid_t pid;
-    int i = 0;
-
-    sigset_t signal_set = {0};
-    char *args[] = {"./watchdog.out", NULL};
-    int ststus_sigaction = 0; /* SUCCESS */
+    int ststus_sigaction = ILRD_SUCCESS;
     struct sigaction handler = {0};	
 
     /*Block all signals from WD_Thread and Unblock SIGUSR1 and SIGUSR2 */
@@ -121,7 +117,7 @@ int *WatchdogThread(wd_args_t *wd_args_)
     ExitIfError(ILRD_SUCCESS == ststus_sigaction,
                                      "Error: sigaction1 failed", ILRD_FALSE); 
 
-    DEBUG printf("Fork START\n");
+    DEBUG printf("          Fork STARTED\n");
 
     pid = fork(); 
     if (0 == pid)

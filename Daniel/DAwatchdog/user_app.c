@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	MakeMeImurtal(argc, argv, signal_intervals, max_fails);
 	
 	/*flow of user code*/
-	while(i < 10)
+	while(i < 100)
 	{
 		++i;
 		printf("\nUSER APP PROGRAM [pid:%d] \n\n", getpid());

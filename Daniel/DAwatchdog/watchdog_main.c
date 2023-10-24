@@ -25,9 +25,7 @@
 #include "aux_funcs.h"
 #include "common.h"	/*wd_args_t, pid_t, assert, 
 						exit, atoi, puts									*/
-/******************************Global variables********************************/
-
-
+                        
 /**********************************Functions***********************************/
 int main(int argc_, char *argv_[])
 {

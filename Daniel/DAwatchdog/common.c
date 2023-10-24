@@ -10,11 +10,11 @@
 **************************	Header & Macro	***********************************/
 #define _POSIX_C_SOURCE /*include expand library of signal.h (sigation)*/
 #define _POSIX_SOURCE /*include expand library of signal.h (sigation)*/
-#include <assert.h>
+#include <assert.h> /*assert*/
 #include <stdio.h> /*fprintf, scanf, snprintf*/
 #include <stdlib.h> /*system */
 #include <unistd.h> /*pid_t*/
-#include <pthread.h>
+#include <pthread.h> 
 #include <sys/types.h>
 #include <signal.h> /*sigaction*/
 #include <semaphore.h>	/*sem_op*/
@@ -31,8 +31,6 @@ static volatile int g_fail_counter;
 static volatile int g_is_not_resucitate;
 static volatile int g_is_child_ready;
 
-pid_t wd_process_id;
-
 /**********************************Functions***********************************/
 
  int WDSchedulerManage(wd_args_t *wd_args_)
@@ -42,11 +40,11 @@ pid_t wd_process_id;
     scheduler_t *wd_sched = NULL;
     struct sigaction actions[2] = {0};
 
-    DEBUG printf("\n\nWDSchedulerManage START1 Process\n\n");
+    DEBUG printf("\nWDSchedulerManage START1 Process\n");
 
     assert(wd_args_);
 
-    /*Set sigaction */
+    /*Set 2 sigactions */
     actions[0].sa_handler  = SIGUSR1Handler;
     actions[1].sa_handler = SIGUSR2Handler;
 
@@ -94,29 +92,17 @@ pid_t wd_process_id;
 
 	if (wd_args_->is_user_prog)
 	{
+        DEBUG printf("USER APP killed by \n");
 		while( -1 == kill(wd_args_->signal_pid, SIGUSR2))
         {
+            
             kill(wd_args_->signal_pid, SIGUSR2);
         }
+        
 	}
     
     /*	return if scheduler has successfully finished */
     return (ILRD_SUCCESS == status ? ILRD_SUCCESS : ILRD_FALSE);
-}
-
- int StamScheduler(void *params_)
-{
-    wd_args_t *wd_args = (wd_args_t *)params_;
-    if (wd_args->is_user_prog == IS_USER_PROG)
-    {
-        DEBUG printf("USER APP SENDING SIGNAL (StamScheduler)\n");
-    }
-    else{
-        DEBUG printf("WD PROCESS SENDING SIGNAL (StamScheduler)\n");
-    }
-    kill(wd_args->signal_pid, SIGUSR1);
-
-    return 0;
 }
 
  int BlockAllSignalsHandler(void) 
@@ -137,14 +123,11 @@ pid_t wd_process_id;
  int BlockSIGUSR12Handler(void)
 {
     sigset_t mask_set;
-    
-    /*Initialize an empty signal mask_set*/
-    RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1),
+                                                 "sigaddset error", ILRD_FALSE);
 
-    /*Add SIGUSR1 and SIGUSR2 to the mask set*/
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1), "sigaddset error", ILRD_FALSE);
-
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2), "sigaddset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2),
+                                                 "sigaddset error", ILRD_FALSE);
         
     /*Block mask_set (SIGUSR1, SIGUSR2)*/
     sigprocmask(SIG_BLOCK, &mask_set, NULL);
@@ -159,12 +142,15 @@ pid_t wd_process_id;
 
     /*Block all signals*/
     /*Initialize an empty signal mask_set*/
-    RETURN_IF_ERROR(0 == sigemptyset(&mask_set), "sigemptyset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigemptyset(&mask_set),
+                                             "sigemptyset error", ILRD_FALSE);
 
     /*Add SIGUSR1 and SIGUSR2 to the mask set*/
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1), "sigaddset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR1),
+                                                "sigaddset error", ILRD_FALSE);
 
-    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2), "sigaddset error", ILRD_FALSE);
+    RETURN_IF_ERROR(0 == sigaddset(&mask_set, SIGUSR2),
+                                                 "sigaddset error", ILRD_FALSE);
         
     /*Block mask_set (SIGUSR1, SIGUSR2)*/
     sigprocmask(SIG_UNBLOCK, &mask_set, NULL);
@@ -282,7 +268,6 @@ pid_t wd_process_id;
 	return 0;
 }
 
-
  void SignalCountHandle(int signum) 
 {
     DEBUG printf("[%zu]handlerFun_of_process\n", (size_t)pthread_self());
@@ -298,7 +283,7 @@ pid_t wd_process_id;
 	UNUSED(args_);
     DEBUG printf("FirstSignal\n");
 	/*send siganl to parent id*/
-	ExitIfError(-1 != kill(args_->signal_pid, SIGUSR1), "kill error", KILL_FAIL);
+	ExitIfError(-1 != kill(args_->signal_pid, SIGUSR1),"kill error", KILL_FAIL);
 	
 	/*return 1 to finish the task and not reschedule it*/
 	return 1;
@@ -308,7 +293,7 @@ pid_t wd_process_id;
  void SIGUSR1Handler(int sig_)
 {
 	assert(sig_ == SIGUSR1);
-    DEBUG printf("%60d signal sending SIGUSR1 from: THREAD [pid = %d]\n", getpid());
+    DEBUG printf("%40d sending SIGUSR1\n", getpid());
 	g_fail_counter = 0; 
 	g_is_child_ready = 1;		
 }	
