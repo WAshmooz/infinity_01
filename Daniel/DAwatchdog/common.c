@@ -208,13 +208,12 @@ static volatile int g_is_child_ready;
 		args_->argv_list[0] = args_->argv_list[3];
 		args_->argv_list[1] = NULL;
 		execvp(args_->argv_list[0], args_->argv_list);
-        DEBUG printf("-1-1-1-1-1-1-1-1-1-1--1-1-1-1 \n");
+        DEBUG printf("Eror Resucitate (kill & exec) \n");
 
 		/*LogE("execvp error");  */
 		exit(EXECUTION_FAIL);
 	}
 	
-	/*return 1 to finish the task and not reschedule it*/
 	return 1;
 }
 
