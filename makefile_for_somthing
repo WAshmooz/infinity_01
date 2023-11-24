@@ -1,0 +1,32 @@
+CC=gcc
+CFLAGS=-ansi -pedantic-errors -Wall -Wextra -pthread
+RELEASE=-DNDEBUG -O3
+DEBUG=-g
+INCLUDE= ./include -I ../ds/include
+DEPS= ../ds/include/scheduler.h
+OBJ=../ds/src/dlist.o ../ds/src/sorted_list.o ../ds/src/p_queue.o ../ds/src/uid.o ../ds/src/task.o ../ds/src/scheduler.o src/DDD.o 
+TARGET = watchdog3.out
+SOURCE_FILES := src/DDD
+
+$(TARGET): $(OBJ) $(DEPS)
+	$(CC) -o $(TARGET) $(CFLAGS) $(OBJ)
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@  $< $(CFLAGS) -I $(INCLUDE)
+
+%: %.c
+	$(CC) -o $(CURDIR)/$(notdir $@)  $< $(CFLAGS) -I $(INCLUDE)
+
+all: clean
+all: $(TARGET)
+
+debug: CFLAGS += $(DEBUG)
+debug: $(OBJ)
+	$(CC) $(CFLAGS) $^ -o $(TARGET)
+
+release: CFLAGS += $(RELEASE)	
+release: $(OBJ)
+	$(CC) $(CFLAGS) $^ -o $(TARGET)
+	
+clean:
+	rm -f $(OBJ) *.out
