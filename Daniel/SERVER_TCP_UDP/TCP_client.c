@@ -21,7 +21,7 @@
 
 void RunTCPClient() 
 {
-    int tcp_client_fd = status = pings = -1;
+    int tcp_client_fd = -1, status = -1, pings = -1, i = 0;
     struct sockaddr_in server_addr;
     char buffer[BUFFER_SIZE] = {0};
     srand(time(NULL));
@@ -45,7 +45,7 @@ void RunTCPClient()
     LogAction("Connected to server");
 
     pings = rand() % 8 + 3; /*Random number of pings 3-8*/
-    for (int i = 0; i < pings; ++i) 
+    for (i = 0; i < pings; ++i) 
     {
         int bytes_sent = -1, bytes_received = -1;
 
