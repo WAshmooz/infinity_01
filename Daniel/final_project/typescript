@@ -1,0 +1,895 @@
+Script started on 2023-12-18 12:15:21+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="141" LINES="24"]
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ open typescript 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -std=c++11 -I include -c -fpic src/shared_singleton.cpp [27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -I include -c -fpic src/shared_singleton.cpp 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -std=c++11 -I include -c -fpic src/shared_singleton.cpp [27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -I include -c -fpic src/shared_singleton.cpp [1P p [C [K[1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [K[1P [1P [1P [1P [1P - s h a r e d [C . [1P s h a r e s [1P d _ s i g [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P s r c / s h ared_singleton.cpp [1P [1P [1P [1P . [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P s h a r ed_singleton.o [C - o [C l i b _ [1P s h a r e e d [C [K[1P [1P d . s o 
+[?2004l[01m[Kg++:[m[K [01;35m[Kwarning: [m[Kshared_singleton.o: linker input file unused because linking not done
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include -c -shared shared_singleton.o -o libshared.so [12Pfpic src/shared_singleton.cpp[C[12@shared shared_singleton.o -o libshared.so[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K./a.out 
+[?2004lTestClass created
+
+Do something...
+Do something...
+Do something...
+Do something...
+Do something...
+
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [64@g++ -std=c++11 -I include -c -shared shared_singleton.o -o libshared.so[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K[K./a.out [64@g++ -std=c++11 -I include -c -shared shared_singleton.o -o libshared.so[C[12Pfpic src/shared_singleton.cpp[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Copen typescript [K[2Psudo ./kikoff[Cg++ -std=c++11 -I include src/main.cpp src/nbd_driver_communicator.cpp -o kikoff[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[41Pcd git/projects/final_project/concrete/g++ -std=c++11 -I include src/main.cpp src/nbd_driver_communicator.cpp -o kikoff[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo ./kikoff [K[2@open typescript[C[44@g++ -std=c++11 -I include -c -fpic src/shared_singleton.cpp[C[12@shared shared_singleton.o -o libshared.so[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K[K[7mg++ -std=c++11 -I include src/singleton_test.cpp[27mg++ -std=c++11 -I include src/singleton_test.cpp
+[?2004l[01m[Kcc1plus:[m[K [01;31m[Kfatal error: [m[Ksrc/singleton_test.cpp: No such file or directory
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/singleton_test.cpp[1P/singleton_test.cpp[1P/singleton_test.cpp[1P/singleton_test.cppt/singleton_test.cppe/singleton_test.cpps/singleton_test.cppt/singleton_test.cpp
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out 
+[?2004lTestClass created
+
+Do something...
+Add : 0x7f8380000b70
+Do something...
+Do something...Add : 0x7f8380000b70Do something...
+
+
+Add : 0x7f8380000b70
+Do something...Add : 
+Add : 0x7f8380000b70
+0x7f8380000b70
+
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out g++ -std=c++11 -I include test/singleton_test.cpp./a.out [K
+[?2004lTestClass created
+
+Do something...
+Add : 0x7f70e0000b70
+Do something...
+Do something...Do something...Add : 
+Add : 0x7f70e0000b70
+
+Add : 0x7f70e0000b70
+Do something...
+0x7f70e0000b70
+Add : 0x7f70e0000b70
+
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -std=c++11 -o main main.cpp -ldl[27mg++ -std=c++11 -o main main.cpp -ldl
+[?2004l[01m[Kcc1plus:[m[K [01;31m[Kfatal error: [m[Kmain.cpp: No such file or directory
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -o main main.cpp -ldl[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@t[1@e[1@s[1@t[1P[1P[1P[1P[1@s[1@i[1@n[1@g[1@e[1@l[1@t[1@o[1P[1P[1P[1P[1@l[1@t[1P[1@r[1P[1@e[1@t[1@o[1@n[1@ [1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@m[1@a[1@i[1@n[1@ [1@s[1@r[1@c[1@/[1@s[1@i[1@n[C[C[C[C[1P -ldl[1P -ldl[1P -ldl[1P -ldlg -ldll -ldl[1P -ldl[1P -ldl[1P -ldl[1P -ldl[1P -ldl[1P -ldl[1P -ldl[1P -ldl[1P -ldlt -ldle -ldls -ldlt -ldl/ -ldls -ldli -ldlngleton_test.cpp -ldl
+[?2004l[01m[Ktest/singleton_test.cpp:12:10:[m[K [01;31m[Kfatal error: [m[Ksingleton.hpp: No such file or directory
+   12 | #include [01;31m[K"singleton.hpp"[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~[m[K
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -o main test/singleton_test.cpp -ldl[C[1@ [1@-[1@I[C[1@ [1@i[1@n[1@c[1@l[1@u[1@d[1@e
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main 
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f23cc000b70
+Do something...
+Address : 0x7f23cc000b70
+Do something...
+Do something...Address : 
+Address : 0x7f23cc000b70
+0x7f23cc000b70
+Do something...
+Address : 0x7f23cc000b70
+
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f76a8000b70
+Do something...
+Address : 0x7f76a8000b70
+Do something...
+Address : 0x7f76a8000b70
+Do something...
+Address : 0x7f76a8000b70
+Do something...
+Address : 0x7f76a8000b70
+
+------------------Srart TEST2----------------------
+Cannot load shared object: path/to/your/shared_object.so: cannot open shared object file: No such file or directory
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[11P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15Pmain[C[C[C[C[C[C[C[C[C[15@test/singleton_test[C[C[C[C[C[C[C[C[C
+[?2004l[01m[Ktest/singleton_test.cpp:12:10:[m[K [01;31m[Kfatal error: [m[Ksingleton.hpp: No such file or directory
+   12 | #include [01;31m[K"singleton.hpp"[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~[m[K
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ls
+[?2004l[0m[01;32ma.out[0m  [01;34mconcrete[0m  [01;34mframework[0m  [01;34minclude[0m  [01;32mmain[0m  shared_singleton.o  [01;34msrc[0m  [01;34mtest[0m  typescript
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ lsg++ -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [Kg++ -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K[Klsg++ -std=c++11 -o main test/singleton_test.cpp -ldl[C[1@ [1@-[1@I[C[1@ [1@i[1@n[1@c[1@l[4@ude/[1P
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main 
+[?2004lTestClass created
+
+Do something...
+Address : Do something...0x7f5648000b70
+Do something...
+Do something...Address : Address : 
+Address : 0x7f5648000b70
+0x7f5648000b70
+
+0x7f5648000b70
+Do something...
+Address : 0x7f5648000b70
+
+----------------Srart TEST2--------------------
+Cannot load shared object: shared_singleton.so: cannot open shared object file: No such file or directory
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kg++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [K[K./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl
+[?2004lIn file included from [01m[Ktest/singleton_test.cpp:12[m[K:
+include/singleton.hpp: In instantiation of ‘[01m[Kstatic T* Singleton<T>::GetInstance() [with T = TestClass][m[K’:
+[01m[Ktest/singleton_test.cpp:32:55:[m[K   required from here
+[01m[Kinclude/singleton.hpp:53:30:[m[K [01;31m[Kerror: [m[K‘[01m[KTestClass::TestClass()[m[K’ is private within this context
+   53 |             s_instance.reset([01;31m[Knew T()[m[K);
+      |                              [01;31m[K^~~~~~~[m[K
+[01m[Ktest/singleton_test.cpp:22:5:[m[K [01;36m[Knote: [m[Kdeclared private here
+   22 |     [01;36m[KTestClass[m[K() {std::cout << "TestClass created\n" << std::endl;}
+      |     [01;36m[K^~~~~~~~~[m[K
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7fa300000b70
+Do something...
+Address : Do something...0x7fa300000b70
+
+Address : 0x7fa300000b70
+Do something...
+Address : 0x7fa300000b70
+Do something...
+Address : 0x7fa300000b70
+
+----------------Srart TEST2--------------------
+Cannot load shared object: shared_singleton.so: cannot open shared object file: No such file or directory
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kg++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [K[K./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main 
+[?2004lTestClass created
+
+Do something...
+Address : 0x7fd414000b70
+Do something...
+Address : 0x7fd414000b70
+Do something...
+Address : 0x7fd414000b70
+Do something...
+Address : 0x7fd414000b70
+Do something...
+Address : 0x7fd414000b70
+
+----------------Srart TEST2--------------------
+Cannot load shared object: ./shared_singleton.so: cannot open shared object file: No such file or directory
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f3368000b70
+Do something...
+Address : 0x7f3368000b70
+Do something...
+Address : 0x7f3368000b70
+Do something...
+Address : 0x7f3368000b70
+Do something...
+Address : 0x7f3368000b70
+
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./main g++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kg++ -std=c++11 -o main test/singleton_test.cpp -ldl[15Pmain[C[C[C[C[C[C[C[C[C[15@test/singleton_test[C[C[C[C[C[C[C[C[C
+[?2004l[01m[Ktest/singleton_test.cpp:12:10:[m[K [01;31m[Kfatal error: [m[Ksingleton.hpp: No such file or directory
+   12 | #include [01;31m[K"singleton.hpp"[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~[m[K
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [Kg++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kg++ -std=c++11 -o main main.cpp -ldl./a.out [Kg++ -std=c++11 -o main main.cpp -ldl./a.out [Kg++ -std=c++11 -I include test/singleton_test.cpp
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cppo main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [Kg++ -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [Kg++ -std=c++11 -o main test/singleton_test.cpp -ldl[2PI include test/singleton_test.cpp[Kg++ -std=c++11 -I include test/singleton_test.cppo main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [Kg++ -I include -std=c++11 -o main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kg++ -std=c++11 -o main main.cpp -ldl./a.out [Kg++ -std=c++11 -I include src/singleton_test.cpp-c -shared shared_singleton.o -o libshared.so 
+[?2004l[01m[Kg++:[m[K [01;35m[Kwarning: [m[Kshared_singleton.o: linker input file unused because linking not done
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include -c -shared shared_singleton.o -o libshared.so 
+[?2004l[01m[Kg++:[m[K [01;35m[Kwarning: [m[Kshared_singleton.o: linker input file unused because linking not done
+[01m[Kg++:[m[K [01;31m[Kerror: [m[Kshared_singleton.o: linker input file not found: No such file or directory
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include -c -shared shared_singleton.o -o libshared.so 
+[?2004l[01m[Kg++:[m[K [01;35m[Kwarning: [m[Kshared_singleton.o: linker input file unused because linking not done
+[01m[Kg++:[m[K [01;31m[Kerror: [m[Kshared_singleton.o: linker input file not found: No such file or directory
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include -c -shared shared_singleton.o -o libshared.so [23Ptest/singleton_test.cppo main test/singleton_test.cpp -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [Kg++ -std=c++11 -o main test/singleton_test.cpp -ldl[2PI include test/singleton_test.cpp-c -shared shared_singleton.o -o libshared.so [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include -c -shared shared_singleton.o -o libshared.so 
+[?2004l[01m[Kg++:[m[K [01;35m[Kwarning: [m[Kshared_singleton.o: linker input file unused because linking not done
+[01m[Kg++:[m[K [01;31m[Kerror: [m[Kshared_singleton.o: linker input file not found: No such file or directory
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -std=c++11 -I include -c shared_singleton.cpp -o shared_singleton.o[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -I include -c shared_singleton.cpp -o shared_singleton.o
+[?2004l[01m[Kcc1plus:[m[K [01;31m[Kfatal error: [m[Kshared_singleton.cpp: No such file or directory
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include -c shared_singleton.cpp -o shared_singleton.o[C[1@s[1@r[1@c[1@/
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -shared shared_singleton.o -o libshared.so[27mg++ -shared shared_singleton.o -o libshared.so
+[?2004l/usr/bin/ld: shared_singleton.o: warning: relocation against `_ZN9SingletonI9TestClassE10s_instanceE' in read-only section `.text._ZN9SingletonI9TestClassE11GetInstanceEv[_ZN9SingletonI9TestClassE11GetInstanceEv]'
+/usr/bin/ld: shared_singleton.o: relocation R_X86_64_PC32 against symbol `_ZSt4cout@@GLIBCXX_3.4' can not be used when making a shared object; recompile with -fPIC
+/usr/bin/ld: final link failed: bad value
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -std=c++11 -I include -c -fPIC shared_singleton.cpp -o shared_singleton.o[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -I include -c -fPIC shared_singleton.cpp -o shared_singleton.o
+[?2004l[01m[Kcc1plus:[m[K [01;31m[Kfatal error: [m[Kshared_singleton.cpp: No such file or directory
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include -c -fPIC shared_singleton.cpp -o shared_singleton.o[C[1@s[1@r[1@c[1@/
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -shared shared_singleton.o -o libshared.so[27mg++ -shared shared_singleton.o -o libshared.so
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -shared shared_singleton.o -o libshared.so[K./M[Kmain 
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f749c000b70
+Do something...Do something...
+Address : 0x7f749c000b70
+Do something...
+
+Address : 0x7f749c000b70
+Address : 0x7f749c000b70
+Do something...
+Address : 0x7f749c000b70
+
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -shared shared_singleton.o -o libshared.so[27mg++ -shared shared_singleton.o -o libshared.so
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7m./singleton_test[27m./singleton_test
+[?2004lbash: ./singleton_test: No such file or directory
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -std=c++11 -I include singleton_test.cpp -o singleton_test -ldl[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -I include singleton_test.cpp -o singleton_test -ldl[C[1@s[1@r[1@c[1@/
+[?2004l[01m[Kcc1plus:[m[K [01;31m[Kfatal error: [m[Ksrc/singleton_test.cpp: No such file or directory
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/singleton_test.cpp -o singleton_test -ldl[1P[1P[1P[1P
+[?2004l[01m[Kcc1plus:[m[K [01;31m[Kfatal error: [m[Ksingleton_test.cpp: No such file or directory
+compilation terminated.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include singleton_test.cpp -o singleton_test -ldl[4@rc/s[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1@t[1@e[1@s[1@t
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test 
+[?2004lTestClass created
+
+Do something...
+Address : 0x7fd414000b70
+Do something...
+Address : 0x7fd414000b70
+Do something...Do something...
+Do something...
+Address : 0x7fd414000b70
+
+Address : 0x7fd414000b70
+Address : 0x7fd414000b70
+
+-------------** START TEST 2 ------------------
+Cannot load shared object: ./shared_singleton.so: cannot open shared object file: No such file or directory
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f52a8000b70
+Do something...
+Address : 0x7f52a8000b70
+Do something...
+Address : 0x7f52a8000b70
+Do something...
+Address : 0x7f52a8000b70
+Do something...
+Address : 0x7f52a8000b70
+
+-------------** START TEST 2 ------------------
+Cannot load shared object: ./libshred.so: cannot open shared object file: No such file or directory
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7fa4d4000b70
+Do something...
+Do something...
+Address : 0x7fa4d4000b70
+Do something...Do something...
+Address : 0x7fa4d4000b70
+
+Address : 0x7fa4d4000b70
+Address : 0x7fa4d4000b70
+
+-------------** START TEST 2 ------------------
+TestClass created
+
+Address from shared object: 0x55f194f9c040
+Address from main: 0x7fa4d4000b70
+TestClass destroyed
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -R[Krdynamic 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f161c000b70
+Do something...
+Address : 0x7f161c000b70
+Do something...
+Address : 0x7f161c000b70
+Do something...
+Address : 0x7f161c000b70
+Do something...
+Address : 0x7f161c000b70
+
+-------------** START TEST 2 ------------------
+Address from shared object: 0x7f161c000b70
+Address from main: 0x7f161c000b70
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f97c4000b70
+Do something...
+Address : 0x7f97c4000b70
+Do something...
+Address : 0x7f97c4000b70
+Do something...
+Address : Do something...0x7f97c4000b70
+
+Address : 0x7f97c4000b70
+
+-------------** START TEST 2 ------------------
+Address from shared object: 0x7f97c4000b70
+Address from main: 0x7f97c4000b70
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f7bb0000b70
+Do something...
+Address : 0x7f7bb0000b70
+Do something...
+Address : 0x7f7bb0000b70
+Do something...
+Address : 0x7f7bb0000b70
+Do something...
+Address : 0x7f7bb0000b70
+
+-------------** START TEST 2 ------------------
+Address from shared object: 0x7f7bb0000b70
+Address from main: 0x7f7bb0000b70
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f6568000b70
+Do something...
+Address : 0x7f6568000b70
+Do something...
+Address : 0x7f6568000b70
+Do something...
+Address : 0x7f6568000b70
+Do something...
+Address : 0x7f6568000b70
+
+-------------** START TEST 2 ------------------
+Address from shared object: 0x7f6568000b70
+Address from main: 0x7f6568000b70
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7fcd60000b70
+Do something...
+Address : 0x7fcd60000b70
+Do something...
+Address : 0x7fcd60000b70
+Do something...
+Address : 0x7fcd60000b70
+Do something...
+Address : 0x7fcd60000b70
+
+--------- START TEST 2 (implicit) -------------
+Address from shared object: 0x7fcd60000b70
+Address from main: 0x7fcd60000b70
+---------- START TEST 3 (explicit) ------------
+Explicit instance from main: 0x7fcd60000b70
+Implicit instance from main: 0x7fcd60000b70
+Both explicit and implicit instances are the same.
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7feaa0000b70
+Do something...Do something...
+Address : 0x7feaa0000b70
+
+Address : 0x7feaa0000b70
+Do something...
+Address : 0x7feaa0000b70
+Do something...
+Address : 0x7feaa0000b70
+
+--------- START TEST 2 (implicit) -------------
+Address from shared object: 0x7feaa0000b70
+Address from main: 0x7feaa0000b70
+
+---------- START TEST 3 (explicit) ------------
+Explicit instance from main: 0x7feaa0000b70
+Implicit instance from main: 0x7feaa0000b70
+Both explicit and implicit instances are the same.
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f69cc000b70
+Do something...
+Address : 0x7f69cc000b70
+Do something...
+Do something...
+Address : 0x7f69cc000b70
+Address : 0x7f69cc000b70
+Do something...
+Address : 0x7f69cc000b70
+
+--------- START TEST 2 (implicit) -------------
+Address from shared object: 0x7f69cc000b70
+Address from main: 0x7f69cc000b70
+
+---------- START TEST 3 (explicit) ------------
+instance from main: 0x7f69cc000b70
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K
+[?2004lTestClass created
+
+Do something...
+Address : Do something...
+Do something...
+0x7f1038000b70
+Do something...Address : 
+Address : 0x7f1038000b70
+Do something...
+Address : 0x7f1038000b70
+Address : 0x7f1038000b70
+0x7f1038000b70
+
+
+---------- START TEST 3 (explicit) ------------
+instance from main: 0x7f1038000b70
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test [66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l/usr/bin/ld: /tmp/cc0VPAW0.o: in function `test3()':
+singleton_test.cpp:(.text+0x31e): undefined reference to `foo'
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[7mg++ -std=c++11 -shared -fPIC -o libshared_singleton.so shared_singleton.cpp[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -shared -fPIC -o libshared_singleton.so shared_singleton.cpp[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CI include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl[5P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[5@test/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K[66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pshared -fPIC -o libshared_singleton.so shared_singleton.cpp[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[7mg++ -std=c++11 -Iinclude -o singleton_test test/singleton_test.cpp -ldl -rdynamic[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -Iinclude -o singleton_test test/singleton_test.cpp -ldl -rdynamic[C include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K[66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C[2Pinclude -o singleton_test test/singleton_test.cpp -ldl -rdynamic[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K[66@g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic[C
+[?2004l/usr/bin/ld: /tmp/ccaB0Plp.o: in function `test3()':
+singleton_test.cpp:(.text+0x31e): undefined reference to `foo'
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-L[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Keh[Kcjp $LD_LI[K[K[K[K[K[K[K[K[Kho $LD_LiBRARY_PATH
+[?2004l
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ echo $LD_LiBRARY_PATH[1PBRARY_PATHiBRARY_PATH[1PBRARY_PATHIBRARY_PATH
+[?2004l
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ echo $LD_LIBRARY_PATH[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kecho $LD_LiBRARY_PATHg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-L. -Wl, r[K[Krpath,. -l[1@-[C[C[C[C[C[C[C[C[C
+-l         -lang-asm  -list      
+]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,r-path,. -lib[K[K[Kshared [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?2004l/usr/bin/ld: cannot find rpath: No such file or directory
+/usr/bin/ld: cannot find .: file format not recognized
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,rpath,. -shared-rpath,. -shared [A]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?2004l/usr/bin/ld: /tmp/ccz5AgCf.o: warning: relocation against `_ZN9SingletonI9TestClassE10s_instanceE' in read-only section `.text._ZN9SingletonI9TestClassE11GetInstanceEv[_ZN9SingletonI9TestClassE11GetInstanceEv]'
+/usr/bin/ld: /tmp/ccz5AgCf.o: relocation R_X86_64_PC32 against symbol `_ZSt4cout@@GLIBCXX_3.4' can not be used when making a shared object; recompile with -fPIC
+/usr/bin/ld: final link failed: bad value
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kecho $LD_LiBRARY_PATHg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl[5P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[4@rc/s[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test[Kg++ -shared shared_singleton.o -o libshared.so./main [Kg++ -std=c++11 -I include -c -fPIC src/shared_singleton.cpp -o shared_singleton.o[4P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[4@rc/s[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32P-c -fPIC src/shared_singleton.cpp 
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kecho $LD_LiBRARY_PATHg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl -rdynamic [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -ldl[5P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[4@rc/s[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test[Kg++ -shared shared_singleton.o -o libshared.so./main [Kg++ -std=c++11 -I include -c -fPIC src/shared_singleton.cpp -o shared_singleton.o[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./main [Kg++ -shared shared_singleton.o -o libshared.so[C[1@ [1@-[1@s[1@t[1@d[1@=[1@c[1@+[1@1[1@1[C[1@ [1P[1@+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -shared shared_singleton.o -o libshared.soI include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared [K[A]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[K]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -sharedlshared
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test 
+[?2004lTestClass created
+
+Do something...
+Address : 0x7f1848000b70
+Do something...
+Address : 0x7f1848000b70
+Do something...
+Address : 0x7f1848000b70
+Do something...
+Address : 0x7f1848000b70
+Do something...
+Address : 0x7f1848000b70
+
+
+Address from shared object: 0x7f1848000b70
+---------- START TEST 3 (explicit) ------------
+instance from main: 0x7f1848000b70
+TestClass destroyed
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./singleton_test g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -lshared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[36Pshared shared_singleton.o -o libshared.soI include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,rpath,. -shared[1@-[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32P-c -fPIC src/shared_singleton.cpp [3Pshared shared_singleton.o -o libshared.soI include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -lshared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [K[K./singleton_test g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -lshared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[36Pshared shared_singleton.o -o libshared.soI include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,rpath,. -shared[1@-[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32P-c -fPIC src/shared_singleton.cpp [3Pshared shared_singleton.o -o libshared.soI include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@-[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?2004l/usr/bin/ld: /tmp/ccQlWQkI.o: warning: relocation against `_ZN9SingletonI9TestClassE10s_instanceE' in read-only section `.text._ZN9SingletonI9TestClassE11GetInstanceEv[_ZN9SingletonI9TestClassE11GetInstanceEv]'
+/usr/bin/ld: /tmp/ccQlWQkI.o: relocation R_X86_64_PC32 against symbol `_ZSt4cout@@GLIBCXX_3.4' can not be used when making a shared object; recompile with -fPIC
+/usr/bin/ld: final link failed: bad value
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -lshared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[36Pshared shared_singleton.o -o libshared.soI include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,rpath,. -shared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,rpath,. -shared[31P-c -fPIC src/shared_singleton.cpp [3Pshared shared_singleton.o -o libshared.soI include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -lshared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[36Pshared shared_singleton.o -o libshared.soI include -c -fPIC src/shared_singleton.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,rpath,. -shared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,rpath,. -shared[31P-c -fPIC src/shared_singleton.cpp [3Pshared shared_singleton.o -o libshared.soI include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -lshared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=11[K[Kc++11 -I include/[K tes[K[K[Ksrc/logger.cpp test/logger_test.cpp -[K
+[?2004l/usr/bin/ld: /tmp/ccdDqLC8.o:(.bss._ZN9SingletonIN5hrd316LoggerEE10s_instanceE[_ZN9SingletonIN5hrd316LoggerEE10s_instanceE]+0x0): multiple definition of `Singleton<hrd31::Logger>::s_instance'; /tmp/ccXD9dOf.o:(.bss+0x0): first defined here
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l/usr/bin/ld: /tmp/ccP7Q1TR.o:(.bss._ZN9SingletonIN5hrd316LoggerEE10s_instanceE[_ZN9SingletonIN5hrd316LoggerEE10s_instanceE]+0x0): multiple definition of `Singleton<hrd31::Logger>::s_instance'; /tmp/ccMpma8R.o:(.bss+0x0): first defined here
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l/usr/bin/ld: /tmp/ccFc2pxw.o: in function `main':
+logger_test.cpp:(.text+0x1d): undefined reference to `Singleton<hrd31::Logger>::GetInstance()'
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l/usr/bin/ld: /tmp/ccrn1bpu.o: warning: relocation against `_ZN9SingletonIN5hrd316LoggerEE7s_mutexE' in read-only section `.text._ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv[_ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv]'
+/usr/bin/ld: /tmp/ccrn1bpu.o: in function `Singleton<hrd31::Logger>::GetInstance()':
+logger_test.cpp:(.text._ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv[_ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv]+0x47): undefined reference to `Singleton<hrd31::Logger>::s_mutex'
+/usr/bin/ld: warning: creating DT_TEXTREL in a PIE
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l/usr/bin/ld: /tmp/ccD8PiX1.o:(.bss._ZN9SingletonIN5hrd316LoggerEE10s_instanceE[_ZN9SingletonIN5hrd316LoggerEE10s_instanceE]+0x0): multiple definition of `Singleton<hrd31::Logger>::s_instance'; /tmp/cc9UcQ9Q.o:(.bss+0x0): first defined here
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l[01m[Ksrc/logger.cpp:[m[K In member function ‘[01m[Kvoid hrd31::Logger::Log(hrd31::Logger::log_level_t, const string&, const string&, int, bool)[m[K’:
+[01m[Ksrc/logger.cpp:52:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kcout[m[K’ is not a member of ‘[01m[Kstd[m[K’
+   52 |             std::[01;31m[Kcout[m[K << output; //prints the Log msg to the standard output
+      |                  [01;31m[K^~~~[m[K
+[01m[Ksrc/logger.cpp:2:1:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::cout[m[K’ is defined in header ‘[01m[K<iostream>[m[K’; did you forget to ‘[01m[K#include <iostream>[m[K’?
+    1 | #include "logger.hpp"
+  +++ |+[32m[K#include <iostream>[m[K
+    2 | 
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l/usr/bin/ld: /tmp/ccOhfSxG.o: warning: relocation against `_ZN9SingletonIN5hrd316LoggerEE7s_mutexE' in read-only section `.text._ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv[_ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv]'
+/usr/bin/ld: /tmp/ccOhfSxG.o: in function `Singleton<hrd31::Logger>::GetInstance()':
+logger_test.cpp:(.text._ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv[_ZN9SingletonIN5hrd316LoggerEE11GetInstanceEv]+0x47): undefined reference to `Singleton<hrd31::Logger>::s_mutex'
+/usr/bin/ld: warning: creating DT_TEXTREL in a PIE
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l/usr/bin/ld: /tmp/ccQmnL7S.o:(.bss._ZN9SingletonIN5hrd316LoggerEE10s_instanceE[_ZN9SingletonIN5hrd316LoggerEE10s_instanceE]+0x0): multiple definition of `Singleton<hrd31::Logger>::s_instance'; /tmp/ccZQuaSv.o:(.bss+0x0): first defined here
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp 
+[?2004l/usr/bin/ld: /tmp/ccEYqlZB.o:(.bss._ZN9SingletonIN5hrd316LoggerEE10s_instanceE[_ZN9SingletonIN5hrd316LoggerEE10s_instanceE]+0x0): multiple definition of `Singleton<hrd31::Logger>::s_instance'; /tmp/cc9Geo5v.o:(.bss+0x0): first defined here
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K[54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[INFO] This is an information message (test/logger_test.cpp:20)
+[ERROR] This is an error message (test/logger_test.cpp:21)
+[DEBUG] This is a debug message (test/logger_test.cpp:22)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[DEBUG] This is a debug message (test/logger_test.cpp:25)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[DEBUG] This is a debug message (test/logger_test.cpp:25)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[DEBUG] This is a debug message (test/logger_test.cpp:25)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[DEBUG] This is a debug message (test/logger_test.cpp Line:25)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[DEBUG] This is a debug message (test/logger_test.cpp, Line:25)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[DEBUG] This is a debug message (Path: test/logger_test.cpp, Line:25)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004l[DEBUG] This is a debug message (Path: test/logger_test.cpp, Line: 25)
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ git add -f .
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ git commite [K[K -m "updatde[Ke old version without using RAM" "i"n" "m"a"i"n"[C
+[?2004l[master e8cdaef] updatde old version without using RAM in main
+ 26 files changed, 1318 insertions(+), 112 deletions(-)
+ create mode 100755 projects/final_project/a.out
+ create mode 100644 projects/final_project/concrete/TerminalCMD.txt
+ create mode 100755 projects/final_project/concrete/a.out
+ create mode 100644 projects/final_project/concrete/build/i_driver_comuunicator.o
+ create mode 100644 projects/final_project/concrete/build/main.o
+ create mode 100644 projects/final_project/concrete/build/nbd_driver_communicator.o
+ rename projects/final_project/concrete/include/{nbd_driver_communicator222.hpp => nbd_driver_communicator.hpp} (54%)
+ rewrite projects/final_project/concrete/kikoff (85%)
+ create mode 100644 projects/final_project/concrete/makefile
+ create mode 100644 projects/final_project/include/logger.hpp
+ create mode 100644 projects/final_project/include/singleton.hpp
+ create mode 100755 projects/final_project/libshared.so
+ create mode 100644 projects/final_project/log
+ create mode 100755 projects/final_project/main
+ create mode 100644 projects/final_project/shared_singleton.o
+ create mode 100644 projects/final_project/src/logger.cpp
+ create mode 100644 projects/final_project/src/shared_singleton.cpp
+ create mode 100644 projects/final_project/test/logger_test.cpp
+ create mode 100644 projects/final_project/test/singleton_test.cpp
+ create mode 100644 projects/final_project/typescript
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ git commo[Kit[K[K[K[K[K[Kpush -u origin master
+[?2004lUsername for 'https://git.infinitylabs.co.il': daniel.shabso
+Password for 'https://daniel.shabso@git.infinitylabs.co.il': 
+warning: redirecting to https://git.infinitylabs.co.il/ilrd/haifa/hrd31/daniel.shabso.git/
+Enumerating objects: 50, done.
+Counting objects:   2% (1/50)Counting objects:   4% (2/50)Counting objects:   6% (3/50)Counting objects:   8% (4/50)Counting objects:  10% (5/50)Counting objects:  12% (6/50)Counting objects:  14% (7/50)Counting objects:  16% (8/50)Counting objects:  18% (9/50)Counting objects:  20% (10/50)Counting objects:  22% (11/50)Counting objects:  24% (12/50)Counting objects:  26% (13/50)Counting objects:  28% (14/50)Counting objects:  30% (15/50)Counting objects:  32% (16/50)Counting objects:  34% (17/50)Counting objects:  36% (18/50)Counting objects:  38% (19/50)Counting objects:  40% (20/50)Counting objects:  42% (21/50)Counting objects:  44% (22/50)Counting objects:  46% (23/50)Counting objects:  48% (24/50)Counting objects:  50% (25/50)Counting objects:  52% (26/50)Counting objects:  54% (27/50)Counting objects:  56% (28/50)Counting objects:  58% (29/50)Counting objects:  60% (30/50)Counting objects:  62% (31/50)Counting objects:  64% (32/50)Counting objects:  66% (33/50)Counting objects:  68% (34/50)Counting objects:  70% (35/50)Counting objects:  72% (36/50)Counting objects:  74% (37/50)Counting objects:  76% (38/50)Counting objects:  78% (39/50)Counting objects:  80% (40/50)Counting objects:  82% (41/50)Counting objects:  84% (42/50)Counting objects:  86% (43/50)Counting objects:  88% (44/50)Counting objects:  90% (45/50)Counting objects:  92% (46/50)Counting objects:  94% (47/50)Counting objects:  96% (48/50)Counting objects:  98% (49/50)Counting objects: 100% (50/50)Counting objects: 100% (50/50), done.
+Delta compression using up to 8 threads
+Compressing objects:   2% (1/35)Compressing objects:   5% (2/35)Compressing objects:   8% (3/35)Compressing objects:  11% (4/35)Compressing objects:  14% (5/35)Compressing objects:  17% (6/35)Compressing objects:  20% (7/35)Compressing objects:  22% (8/35)Compressing objects:  25% (9/35)Compressing objects:  28% (10/35)Compressing objects:  31% (11/35)Compressing objects:  34% (12/35)Compressing objects:  37% (13/35)Compressing objects:  40% (14/35)Compressing objects:  42% (15/35)Compressing objects:  45% (16/35)Compressing objects:  48% (17/35)Compressing objects:  51% (18/35)Compressing objects:  54% (19/35)Compressing objects:  57% (20/35)Compressing objects:  60% (21/35)Compressing objects:  62% (22/35)Compressing objects:  65% (23/35)Compressing objects:  68% (24/35)Compressing objects:  71% (25/35)Compressing objects:  74% (26/35)Compressing objects:  77% (27/35)Compressing objects:  80% (28/35)Compressing objects:  82% (29/35)Compressing objects:  85% (30/35)Compressing objects:  88% (31/35)Compressing objects:  91% (32/35)Compressing objects:  94% (33/35)Compressing objects:  97% (34/35)Compressing objects: 100% (35/35)Compressing objects: 100% (35/35), done.
+Writing objects:   2% (1/36)Writing objects:   5% (2/36)Writing objects:   8% (3/36)Writing objects:  11% (4/36)Writing objects:  13% (5/36)Writing objects:  16% (6/36)Writing objects:  19% (7/36)Writing objects:  22% (8/36)Writing objects:  25% (9/36)Writing objects:  27% (10/36)Writing objects:  30% (11/36)Writing objects:  33% (12/36)Writing objects:  36% (13/36)Writing objects:  38% (14/36)Writing objects:  41% (15/36)Writing objects:  44% (16/36)Writing objects:  47% (17/36)Writing objects:  50% (18/36)Writing objects:  52% (19/36)Writing objects:  55% (20/36)Writing objects:  58% (21/36)Writing objects:  61% (22/36)Writing objects:  63% (23/36)Writing objects:  66% (24/36)Writing objects:  69% (25/36)Writing objects:  72% (26/36)Writing objects:  75% (27/36)Writing objects:  77% (28/36)Writing objects:  80% (29/36)Writing objects:  83% (30/36)Writing objects:  86% (31/36)Writing objects:  88% (32/36)Writing objects:  91% (33/36)Writing objects:  94% (34/36)Writing objects:  97% (35/36)Writing objects: 100% (36/36)Writing objects: 100% (36/36), 98.12 KiB | 4.09 MiB/s, done.
+Total 36 (delta 10), reused 0 (delta 0), pack-reused 0
+To https://git.infinitylabs.co.il/ilrd/haifa/hrd31/daniel.shabso
+   43fe50c..e8cdaef  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7msudo modprobe nbd[27msudo modprobe nbd
+[?2004l[sudo] password for daniel: 
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ MAKE [K[K[K[K[Kmake
+[?2004lmake: *** No targets specified and no makefile found.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ cd concrete/
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ cp[K[Kc++ [K[K[K[Kmakecd concrete/sudo modprobe nbdgit push -u origin mastercommit -m "updatde old version without using RAM in main"add -f .[K[4P./a.out [54@g++ -std=c++11 -I include src/logger.cpp test/logger_test.cpp[Ctest/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -lshared[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./singleton_test [Kg++ -std=c++11 -I include test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[30Psrc/logger.cpp test/logger_test.cpp test/singleton_test.cpp -o singleton_test -L. -Wl,-rpath,. -shared[30Psrc/logger.cpp test/logger_test.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [Kgit add -f .commit -m "updatde old version without using RAM in main"[36Ppush -u origin master[8Psudo modprobe nbd[5Pcd concrete/[8Pmake[K[7mg++ -std=c++11 -I include test/[27mg++ -std=c++11 -I include test/fa[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd ..
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ makew[K[K[K[K[Kmakw[Ke
+[?2004lmake: *** No targets specified and no makefile found.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ [7mg++ -std=c++11 -I include test/[27mg++ -std=c++11 -I include test/factory_test_shape.cpp 
+[?2004l[01m[Ktest/factory_test_shape.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[Ktest/factory_test_shape.cpp:38:50:[m[K [01;31m[Kerror: [m[Kuse of deleted function ‘[01m[KSingleton<T>::Singleton() [with T = hrd31::Factory<Shape, std::__cxx11::basic_string<char>, void>][m[K’
+   38 |     Singleton<Factory<Shape, std::string, void>> [01;31m[KfactoryInstance[m[K;
+      |                                                  [01;31m[K^~~~~~~~~~~~~~~[m[K
+In file included from [01m[Kinclude/factory.hpp:14[m[K,
+                 from [01m[Ktest/factory_test_shape.cpp:2[m[K:
+[01m[Kinclude/singleton.hpp:28:5:[m[K [01;36m[Knote: [m[Kdeclared here
+   28 |     [01;36m[KSingleton[m[K() = delete;
+      |     [01;36m[K^~~~~~~~~[m[K
+[01m[Ktest/factory_test_shape.cpp:38:50:[m[K [01;31m[Kerror: [m[Kuse of deleted function ‘[01m[KSingleton<T>::~Singleton() [with T = hrd31::Factory<Shape, std::__cxx11::basic_string<char>, void>][m[K’
+   38 |     Singleton<Factory<Shape, std::string, void>> [01;31m[KfactoryInstance[m[K;
+      |                                                  [01;31m[K^~~~~~~~~~~~~~~[m[K
+In file included from [01m[Kinclude/factory.hpp:14[m[K,
+                 from [01m[Ktest/factory_test_shape.cpp:2[m[K:
+[01m[Kinclude/singleton.hpp:29:5:[m[K [01;36m[Knote: [m[Kdeclared here
+   29 |     [01;36m[K~[m[KSingleton() = delete;
+      |     [01;36m[K^[m[K
+In file included from [01m[Ktest/factory_test_shape.cpp:2[m[K:
+include/factory.hpp: In instantiation of ‘[01m[Kclass hrd31::Factory<Shape, std::__cxx11::basic_string<char>, void>[m[K’:
+[01m[Ktest/factory_test_shape.cpp:42:12:[m[K   required from here
+[01m[Kinclude/factory.hpp:24:11:[m[K [01;31m[Kerror: [m[Kinvalid parameter type ‘[01m[Kvoid[m[K’
+   24 |     using [01;31m[KCreateFunc[m[K = std::function<std::shared_ptr<BASE>(ARGS)>;
+      |           [01;31m[K^~~~~~~~~~[m[K
+[01m[Kinclude/factory.hpp:24:11:[m[K [01;31m[Kerror: [m[Kin declaration ‘[01m[Kusing CreateFunc = class std::function<std::shared_ptr<_Tp>(ARGS)>[m[K’
+[01m[Kinclude/factory.hpp:31:27:[m[K [01;31m[Kerror: [m[Kinvalid parameter type ‘[01m[Kvoid[m[K’
+   31 |     std::shared_ptr<BASE> [01;31m[KCreate[m[K(const KEY& key_, ARGS args_) const;
+      |                           [01;31m[K^~~~~~[m[K
+[01m[Kinclude/factory.hpp:31:27:[m[K [01;31m[Kerror: [m[Kin declaration ‘[01m[Kstd::shared_ptr<_Tp> hrd31::Factory<BASE, KEY, ARGS>::Create(const KEY&, ARGS) const[m[K’
+[01m[Kinclude/factory.hpp:38:41:[m[K [01;31m[Kerror: [m[Kinvalid parameter type ‘[01m[Kvoid[m[K’
+   38 |     std::unordered_map<KEY, CreateFunc> [01;31m[Km_operations[m[K;
+      |                                         [01;31m[K^~~~~~~~~~~~[m[K
+[01m[Kinclude/factory.hpp:38:41:[m[K [01;31m[Kerror: [m[Kin declaration ‘[01m[Khrd31::Factory<BASE, KEY, ARGS>::m_operations[m[K’
+[01m[Ktest/factory_test_shape.cpp:42:14:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass hrd31::Factory<Shape, std::__cxx11::basic_string<char>, void>[m[K’ has no member named ‘[01m[KAdd[m[K’
+   42 |     factory->[01;31m[KAdd[m[K("circle", [](void) { return std::make_shared<Circle>(); });
+      |              [01;31m[K^~~[m[K
+[01m[Ktest/factory_test_shape.cpp:43:14:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass hrd31::Factory<Shape, std::__cxx11::basic_string<char>, void>[m[K’ has no member named ‘[01m[KAdd[m[K’
+   43 |     factory->[01;31m[KAdd[m[K("square", [](void) { return std::make_shared<Square>(); });
+      |              [01;31m[K^~~[m[K
+[01m[Ktest/factory_test_shape.cpp:46:46:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass hrd31::Factory<Shape, std::__cxx11::basic_string<char>, void>[m[K’ has no member named ‘[01m[KCreate[m[K’; did you mean ‘[01m[KCreateFunc[m[K’?
+   46 |     std::shared_ptr<Shape> circle = factory->[01;31m[KCreate[m[K("circle", {});
+      |                                              [01;31m[K^~~~~~[m[K
+      |                                              [32m[KCreateFunc[m[K
+[01m[Ktest/factory_test_shape.cpp:47:46:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass hrd31::Factory<Shape, std::__cxx11::basic_string<char>, void>[m[K’ has no member named ‘[01m[KCreate[m[K’; did you mean ‘[01m[KCreateFunc[m[K’?
+   47 |     std::shared_ptr<Shape> square = factory->[01;31m[KCreate[m[K("square", {});
+      |                                              [01;31m[K^~~~~~[m[K
+      |                                              [32m[KCreateFunc[m[K
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp 
+[?2004l[01m[Ktest/factory_test_shape.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[Ktest/factory_test_shape.cpp:90:28:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kstd::shared_ptr<Shape> circle[m[K’
+   90 |     std::shared_ptr<Shape> [01;31m[Kcircle[m[K = factory_instance->Create("circle", {});
+      |                            [01;31m[K^~~~~~[m[K
+[01m[Ktest/factory_test_shape.cpp:81:28:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::shared_ptr<Shape> circle[m[K’ previously declared here
+   81 |     std::shared_ptr<Shape> [01;36m[Kcircle[m[K = std::make_shared<Circle>();
+      |                            [01;36m[K^~~~~~[m[K
+[01m[Ktest/factory_test_shape.cpp:91:28:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kstd::shared_ptr<Shape> square[m[K’
+   91 |     std::shared_ptr<Shape> [01;31m[Ksquare[m[K = factory_instance->Create("square", {});
+      |                            [01;31m[K^~~~~~[m[K
+[01m[Ktest/factory_test_shape.cpp:82:28:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::shared_ptr<Shape> square[m[K’ previously declared here
+   82 |     std::shared_ptr<Shape> [01;36m[Ksquare[m[K = std::make_shared<Square>();
+      |                            [01;36m[K^~~~~~[m[K
+In file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+include/factory.hpp: In instantiation of ‘[01m[Kstd::shared_ptr<_Tp> hrd31::Factory<BASE, KEY, ARGS>::Create(const KEY&, ARGS) const [with BASE = Shape; KEY = std::__cxx11::basic_string<char>; ARGS = int][m[K’:
+[01m[Ktest/factory_test_shape.cpp:90:61:[m[K   required from here
+[01m[Kinclude/factory.hpp:58:17:[m[K [01;31m[Kerror: [m[Kpassing ‘[01m[Kconst std::unordered_map<std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)>, std::hash<std::__cxx11::basic_string<char> >, std::equal_to<std::__cxx11::basic_string<char> >, std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)> > > >[m[K’ as ‘[01m[Kthis[m[K’ argument discards qualifiers [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
+   58 |     [01;31m[Km_operations[[m[Kkey_](args_);
+      |     [01;31m[K~~~~~~~~~~~~^[m[K
+In file included from [01m[K/usr/include/c++/11/unordered_map:47[m[K,
+                 from [01m[Kinclude/factory.hpp:12[m[K,
+                 from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+[01m[K/usr/include/c++/11/bits/unordered_map.h:979:7:[m[K [01;36m[Knote: [m[K  in call to ‘[01m[Kstd::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::mapped_type& std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::operator[](const key_type&) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::function<std::shared_ptr<Shape>(int)>; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)> > >; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::mapped_type = std::function<std::shared_ptr<Shape>(int)>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::key_type = std::__cxx11::basic_string<char>][m[K’
+  979 |       [01;36m[Koperator[m[K[](const key_type& __k)
+      |       [01;36m[K^~~~~~~~[m[K
+In file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+[01m[Kinclude/factory.hpp:59:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreturn-type-Wreturn-type]8;;[m[K]
+   59 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmake[K
+[?2004lmake: *** No targets specified and no makefile found.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ makeg++ -std=c++11 -I include test/factory_test_shape.cpp 
+[?2004lIn file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+include/factory.hpp: In instantiation of ‘[01m[Kstd::shared_ptr<_Tp> hrd31::Factory<BASE, KEY, ARGS>::Create(const KEY&, ARGS) const [with BASE = Shape; KEY = std::__cxx11::basic_string<char>; ARGS = int][m[K’:
+[01m[Ktest/factory_test_shape.cpp:79:61:[m[K   required from here
+[01m[Kinclude/factory.hpp:58:17:[m[K [01;31m[Kerror: [m[Kpassing ‘[01m[Kconst std::unordered_map<std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)>, std::hash<std::__cxx11::basic_string<char> >, std::equal_to<std::__cxx11::basic_string<char> >, std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)> > > >[m[K’ as ‘[01m[Kthis[m[K’ argument discards qualifiers [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
+   58 |     [01;31m[Km_operations[[m[Kkey_](args_);
+      |     [01;31m[K~~~~~~~~~~~~^[m[K
+In file included from [01m[K/usr/include/c++/11/unordered_map:47[m[K,
+                 from [01m[Kinclude/factory.hpp:12[m[K,
+                 from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+[01m[K/usr/include/c++/11/bits/unordered_map.h:979:7:[m[K [01;36m[Knote: [m[K  in call to ‘[01m[Kstd::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::mapped_type& std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::operator[](const key_type&) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::function<std::shared_ptr<Shape>(int)>; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)> > >; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::mapped_type = std::function<std::shared_ptr<Shape>(int)>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::key_type = std::__cxx11::basic_string<char>][m[K’
+  979 |       [01;36m[Koperator[m[K[](const key_type& __k)
+      |       [01;36m[K^~~~~~~~[m[K
+In file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+[01m[Kinclude/factory.hpp:59:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreturn-type-Wreturn-type]8;;[m[K]
+   59 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp 
+[?2004lIn file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+include/factory.hpp: In instantiation of ‘[01m[Kstd::shared_ptr<_Tp> hrd31::Factory<BASE, KEY, ARGS>::Create(const KEY&, ARGS) const [with BASE = Shape; KEY = std::__cxx11::basic_string<char>; ARGS = int][m[K’:
+[01m[Ktest/factory_test_shape.cpp:79:61:[m[K   required from here
+[01m[Kinclude/factory.hpp:58:17:[m[K [01;31m[Kerror: [m[Kpassing ‘[01m[Kconst std::unordered_map<std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)>, std::hash<std::__cxx11::basic_string<char> >, std::equal_to<std::__cxx11::basic_string<char> >, std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)> > > >[m[K’ as ‘[01m[Kthis[m[K’ argument discards qualifiers [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
+   58 |     [01;31m[Km_operations[[m[Kkey_](args_);
+      |     [01;31m[K~~~~~~~~~~~~^[m[K
+In file included from [01m[K/usr/include/c++/11/unordered_map:47[m[K,
+                 from [01m[Kinclude/factory.hpp:12[m[K,
+                 from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+[01m[K/usr/include/c++/11/bits/unordered_map.h:979:7:[m[K [01;36m[Knote: [m[K  in call to ‘[01m[Kstd::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::mapped_type& std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::operator[](const key_type&) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::function<std::shared_ptr<Shape>(int)>; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::function<std::shared_ptr<Shape>(int)> > >; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::mapped_type = std::function<std::shared_ptr<Shape>(int)>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::key_type = std::__cxx11::basic_string<char>][m[K’
+  979 |       [01;36m[Koperator[m[K[](const key_type& __k)
+      |       [01;36m[K^~~~~~~~[m[K
+In file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+[01m[Kinclude/factory.hpp:59:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreturn-type-Wreturn-type]8;;[m[K]
+   59 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ^C[?2004l[?2004h
+[?2004l
+++: command not found
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ++ -std=c++11 -I include test/factory_test_shape.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@g[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?2004lIn file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+include/factory.hpp: In instantiation of ‘[01m[Kstd::shared_ptr<_Tp> hrd31::Factory<BASE, KEY, ARGS>::Create(const KEY&, ARGS) const [with BASE = Shape; KEY = std::__cxx11::basic_string<char>; ARGS = int][m[K’:
+[01m[Ktest/factory_test_shape.cpp:79:61:[m[K   required from here
+[01m[Kinclude/factory.hpp:59:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreturn-type-Wreturn-type]8;;[m[K]
+   59 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp 
+[?2004lIn file included from [01m[Ktest/factory_test_shape.cpp:5[m[K:
+[01m[Kinclude/factory.hpp:[m[K In member function ‘[01m[Kstd::shared_ptr<_Tp> hrd31::Factory<BASE, KEY, ARGS>::Create(const KEY&, ARGS) const[m[K’:
+[01m[Kinclude/factory.hpp:58:12:[m[K [01;31m[Kerror: [m[K‘[01m[Koperations[m[K’ was not declared in this scope; did you mean ‘[01m[Km_operations[m[K’?
+   58 |     return [01;31m[Koperations[m[K.at(key_)(args_);
+      |            [01;31m[K^~~~~~~~~~[m[K
+      |            [32m[Km_operations[m[K
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@g[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K./a.out 
+[?2004lCircle Ctor
+Circle Ctor
+Drawing Circle
+Drawing Circle
+Circle Dtor
+Circle Dtor
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [46@g++ -std=c++11 -I include test/factory_test_shape.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004lCircle Ctor
+Square Ctor
+Drawing Circle
+Drawing Square
+Square Dtor
+Circle Dtor
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ./a.out [46@g++ -std=c++11 -I include test/factory_test_shape.cpp[C
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ -std=c++11 -I include test/factory_test_shape.cpp [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./a.out [K
+[?2004lCircle Ctor
+Square Ctor
+Drawing Circle
+Drawing Square
+Square Dtor
+Circle Dtor
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ ls
+[?2004l[0m[01;32ma.out[0m  [01;34mconcrete[0m  [01;34mframework[0m  [01;34minclude[0m  [01;32mlibshared.so[0m  log  [01;32mmain[0m  shared_singleton.o  [01;34msrc[0m  [01;34mtest[0m  typescript
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ cd include/
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ GIT [K[K[K[Kfir [K[K[K[Kgit add -f "factory.hpp" 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ git commit -m "done:[K"
+[?2004l[master 3130365] done
+ 1 file changed, 63 insertions(+)
+ create mode 100644 projects/final_project/include/factory.hpp
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ git push -u origin master 
+[?2004lfatal: unable to access 'https://git.infinitylabs.co.il/ilrd/haifa/hrd31/daniel.shabso/': Could not resolve host: git.infinitylabs.co.il
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ git push -u origin master 
+[?2004lfatal: unable to access 'https://git.infinitylabs.co.il/ilrd/haifa/hrd31/daniel.shabso/': Failed to connect to git.infinitylabs.co.il port 443 after 1904 ms: No route to host
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ git push -u origin master [6Pcommit -m "done"add -f "factory.hpp" 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ git add -f "factory.hpp" [1@push -u origin master[C[6Pcommit -m "done"
+[?2004lOn branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   ../../../cpp/a.out[m
+	[31mmodified:   ../../../cpp/include/my_utils.hpp[m
+	[31mdeleted:    ../../../cpp/include/shape.hpp.gch[m
+	[31mmodified:   ../../../cpp/test/bitarr_test.cpp[m
+	[31mmodified:   ../a.out[m
+	[31mdeleted:    ../concrete/build/main.o[m
+	[31mmodified:   ../concrete/include/nbd_driver_communicator.hpp[m
+	[31mdeleted:    ../concrete/kikoff[m
+	[31mmodified:   ../concrete/makefile[m
+	[31mdeleted:    ../concrete/src/main.cpp[m
+	[31mmodified:   ../concrete/src/nbd_driver_communicator.cpp[m
+	[31mmodified:   ../src/logger.cpp[m
+	[31mmodified:   ../typescript[m
+	[31mmodified:   ../../../system_programming/a.out[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ git commit -m "done"add -f "factory.hpp" [5Pcommit -m "done"[Kgit commit -m "done"add -f "factory.hpp" [1@push -u origin master[C[15Pcd include/git push -u origin master [1Padd -f "factory.hpp"[C[5Pcommit -m "done"[Kclear
+[?2004l[H[2J[3J[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/include[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/include[00m$ cd ..
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project[00m$ g++ [7m-std=c++11 -I include[27m-std=c++11 -I includes[K src/ram_[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd concrete/
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ [7m-std=c++11 -I include[27m-std=c++11 -I include test/netspace_tset.cpp src/[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Ksrc/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator test/n etspace_tset.cpp 
+[?2004l/usr/bin/ld: cannot find src/nbd_driver_communicator: No such file or directory
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator test/netspace_tset.cpp [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/net[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/nets[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netsp[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspa[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspac[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_t[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_ts[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tse[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tset[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tset.[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tset.c[1P[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tset.cp[C[1P [A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tset.cpp[1P [A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tset.cpp [K[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/netspace_tset.cpp  [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@/[1@nbd_driver_communicator test/netspace_tset.cpp [A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+[?2004l/usr/bin/ld: cannot find src/nbd_driver_communicator: No such file or directory
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator test/netspace_tset.cpp [A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator test/netspace_tset.cpp 
+[?2004l/usr/bin/ld: cannot find src/nbd_driver_communicator: No such file or directory
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator test/netspace_tset.cpp 
+[?2004l/usr/bin/ld: cannot find src/nbd_driver_communicator: No such file or directory
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator test/netspace_tset.cpp [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C. test/n[1@e[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cc test/[1@n[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cp test[1@/[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cp tes[1@t[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+[?2004l/usr/bin/ld: /tmp/ccMv7y84.o: in function `hrd31::RAMStorage::RAMStorage(unsigned long)':
+ram_storage.cpp:(.text+0x33): undefined reference to `hrd31::IStorage::IStorage(unsigned long)'
+/usr/bin/ld: /tmp/ccMv7y84.o: in function `hrd31::RAMStorage::RAMStorage(hrd31::RAMStorage const&)':
+ram_storage.cpp:(.text+0x158): undefined reference to `hrd31::IStorage::IStorage(unsigned long)'
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator.cpp test/netspace_tset.cpp [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ [7m-std=c++11 -I include src/ram_storage.cpp[27m-std=c++11 -I include src/ram_storage.cpp
+[?2004l/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+/usr/bin/ld: /tmp/cc54mWrT.o: in function `hrd31::RAMStorage::RAMStorage(unsigned long)':
+ram_storage.cpp:(.text+0x33): undefined reference to `hrd31::IStorage::IStorage(unsigned long)'
+/usr/bin/ld: /tmp/cc54mWrT.o: in function `hrd31::RAMStorage::RAMStorage(hrd31::RAMStorage const&)':
+ram_storage.cpp:(.text+0x158): undefined reference to `hrd31::IStorage::IStorage(unsigned long)'
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp
+[?2004l/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+/usr/bin/ld: /tmp/cc56FgSb.o: in function `hrd31::RAMStorage::RAMStorage(unsigned long)':
+ram_storage.cpp:(.text+0x33): undefined reference to `hrd31::IStorage::IStorage(unsigned long)'
+/usr/bin/ld: /tmp/cc56FgSb.o: in function `hrd31::RAMStorage::RAMStorage(hrd31::RAMStorage const&)':
+ram_storage.cpp:(.text+0x158): undefined reference to `hrd31::IStorage::IStorage(unsigned long)'
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp
+[?2004l/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ g++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator.cpp test/netspace_tset.cpp [A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/ne[C[4P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C.cpp tes[C[4@/net[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C test/ne[C[4P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C.cpp tes[C[4@/net[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg++ -std=c++11 -I include src/ram_storage.cpp src/i_driver_comuunicator.cpp src/nbd_driver_communicator.cpp test/netspace_tset.cpp 
+[?2004l[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lmake: *** No rule to make target 'test/namespace_test.cpp', needed by 'kikoff'.  Stop.
+[?2004h]0;daniel@DanielSabso: ~/git/projects/final_project/concrete[01;32mdaniel@DanielSabso[00m:[01;34m~/git/projects/final_project/concrete[00m$ make
+[?2004lg++ -std=c++11 -I include -c src/nbd_driver_communicator.cpp -o build/nbd_driver_communicator.o
+g++ -std=c++11 -I include -c src/ram_storage.cpp -o build/ram_storage.o
+g++ -std=c++11 -I include -c test/netspace_tset.cpp -o build/netspace_tset.o
+g++ -std=c++11 -I include build/

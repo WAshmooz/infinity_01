@@ -1,0 +1,27 @@
+CMD IN TERMINAL:
+
+OPEN TERMINAL 1:
+	sudo modprobe nbd				(just for making nbd modol)
+	cd git/projects/final_project/concrete
+	sudo ./netspace_test					(need sudo to run the program)
+	
+OPEN TERMINAL 2:
+		sudo mkfs.ext4 /dev/nbd0				(format it with ext.4)
+		sudo mount -o sync /dev/nbd0 /mnt		(mount it to mnt directory)
+		
+		sudo nbd-client -d /dev/nbd0  			(for clean close)
+
+
+
+OTHER CMDS:
+ls /dev | grep nbd		(show if nbd active)
+lsmod
+lsblk	(command lists block devices and their respective information - 0 suggests that these
+		 devices (nbd 0 / nbd 1.. )exist but currently don't have any partitions or filesystems
+		 created on them)
+
+
+DIRECTORY:
+
+		cd git/projects/final_project/concrete
+
